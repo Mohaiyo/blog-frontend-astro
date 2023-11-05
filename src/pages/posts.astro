@@ -1,0 +1,18 @@
+---
+import { getCollection } from "astro:content";
+import Layout from '../layouts/Layout.astro'
+import BlogPost from '../components/BlogPost.astro'
+const allPosts = await getCollection("posts");
+---
+
+<Layout title="读书笔记">
+  <ul class="category-list">
+    {allPosts.map((post) => <BlogPost url={post.slug} title={post.data.title} />)}
+  </ul>
+</Layout>
+
+<style lang="scss">
+  .category-list {
+    
+  }
+</style>

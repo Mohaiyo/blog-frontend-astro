@@ -4,6 +4,34 @@
 
 <div class="nav-links">
   <a href="/">首页</a>
-  <a href="/about/">关于</a>
-  <a href="/blog/">博客</a>
+  <a href="/front-end-dev/">前端开发</a>
+  <a href="/back-end-dev/">后端开发</a>
+  <a href="/db-and-storage/">数据库与存储</a>
+  <a href="/cloud-computing-and-deployment/">云计算与部署</a>
+  <a href="/tech-tools-and-practices/">技术工具与实践</a>
+  <a href="/posts/">读书笔记</a>
 </div>
+
+<style lang="scss">
+  .nav-links {
+    display: flex;
+    @apply w-full flex flex-auto py-2 px-6 justify-center;
+    a {
+      line-height: 32px;
+      @apply px-4;
+      color: #333;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .nav-links {
+      display: none;
+    }
+  }
+  :global(.dark) {
+    .nav-links {
+      a {
+        color: #f1f2f4;
+      }
+    }
+  }
+</style>

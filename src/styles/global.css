@@ -1,20 +1,9 @@
-@import url(./normalize.css);
+body {
+  background-color: #f8f8f8;
+  color: #000;
+}
 
-html.dark {
-  background-color: #0d0950;
+.dark body {
+  background-color: rgba(0, 11, 12, 0.9);
   color: #fff;
 }
-
-.dark .nav-links a {
-  color: #fff;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-h1 {
-  margin: 1rem 0;
-  font-size: 2.5rem;
-}
-

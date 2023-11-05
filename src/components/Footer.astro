@@ -2,16 +2,14 @@
 import Social from './Social.astro'
 ---
 
-<footer>
+<footer class="footer">
   <Social platform="twitter" username="mohaiyo" />
   <Social platform="github" username="mohaiyo" />
   <Social platform="youtube" username="mohaiyo" />
 </footer>
 
 <style>
-  footer {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
+  .footer {
+    @apply container mx-auto flex justify-center;
   }
 </style>

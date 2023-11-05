@@ -1,14 +1,66 @@
 ---
 import Hamburger from './Hamburger.astro';
-import HeaderTop from './HeaderTop.astro';
 import Navigation from './Navigation.astro';
 import ThemeIcon from './ThemeIcon.astro';
 ---
-<header>
-  <HeaderTop />
- <nav>
-   <Hamburger />
-   <ThemeIcon />
-   <Navigation />
- </nav>
+<header class="header">
+  <div class="header-container">
+    <div class="header-logo">
+      <a class="header-logo__site-logo">TechConnect</a>
+      <p class="header-logo__site-slogan">创造，连接，改变世界</p>
+    </div>
+    <nav class="header-nav">
+      <Navigation />
+      <div class="header-nav__mobile">
+        <ThemeIcon />
+        <Hamburger />
+      </div>
+     
+    </nav>
+  </div>
 </header>
+
+<style lang="scss">
+  .header {
+    
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 9;
+
+    &-container {
+      @apply container mx-auto p-2 flex justify-between items-center;
+    }
+    .header-logo {
+      &__site-logo {
+        @apply text-2xl;
+      }
+      &__site-slogan {
+        @apply text-xs;
+        color: #666;
+      }
+    }
+    .header-nav {
+      @apply flex justify-end;
+      width: 100%;
+    }
+    .header-nav__mobile {
+      @apply flex;
+      flex: 0 1 64px;
+    }
+  }
+
+  :global(.dark) {
+    .header {
+      background-color: #18181b;
+      color: #fff;
+      .header-logo {
+        &__site-slogan {
+          color: #f1f2f4;
+        }
+      }
+    }
+    
+  }
+
+</style>
