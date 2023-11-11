@@ -20,11 +20,9 @@ const { frontmatter } = Astro.props
 
 <Layout title={frontmatter.title} >
   <h1 class="post__title" transition:animate="slide"> {frontmatter.title}</h1>
-  <p class="post__descr"><em>{frontmatter.description}</em></p>
+  <p class="post__descr"><b>{frontmatter.description}</b></p>
   <div class="post__meta-info">
-    <span class="post__pub-date">{frontmatter.pubDate && frontmatter.pubDate.toString().slice(0, 10)}</span>
-    <span class="post__divider post__divider--vercial"></span>
-    <span class="post__author"><a href="/about">{frontmatter.author}</a></span>
+    发布日期：<span class="post__pub-date">{frontmatter.pubDate && frontmatter.pubDate.toLocaleDateString()}</span>
   </div>
   <div class="post__cover">
     <img src={frontmatter.image.url} alt={frontmatter.image.alt} />
@@ -48,23 +46,24 @@ const { frontmatter } = Astro.props
       font-size: 32px;
     }
     &__descr {
-      @apply text-xs;
-      color: #333;
+      @apply text-sm;
+      color: #999;
     }
     &__meta-info {
-      @apply text-xs flex justify-end gap-2 mb-2 items-center;
-      color: #666;
-    }
-    &__pub-date{
-      text-align: right;
+      @apply text-sm flex gap-1 mb-2 items-center;
+      color: #999;
     }
     &__cover{
       @apply mb-2;
-      max-height: 200px;
       overflow: hidden;
       border-radius: 8px;
       img {
         width: 100%;
+        height: auto;
+        font-size: 0;
+        max-height: 200px;
+        object-position: center;
+        object-fit: cover;
       }
     }
     &__tags {
@@ -77,9 +76,8 @@ const { frontmatter } = Astro.props
     &__tag {
       margin: 4px;
       border-radius: 999px;
-      background-color: #18181b;
-      text-transform: uppercase;
-      @apply text-xs px-4 py-2;
+      background-image: linear-gradient( 135deg, #ABDCFF 10%, #0396FF 100%);
+      @apply text-sm px-4 py-2;
     }
     &__divider{
       width: 1px;

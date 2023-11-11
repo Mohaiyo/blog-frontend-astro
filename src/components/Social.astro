@@ -6,13 +6,11 @@ interface Props {
 const { platform, username } = Astro.props
 ---
 
-<a href={`https://www.${platform}.com/${username}`}>{platform}</a>
+<a href={`https://www.${platform}.com/${username}`} target="_blank">{platform}</a>
 
 <style>
   a {
-    @apply py-2 px-4 rounded-full text-xs m-1;
-    color: white;
-    background-color: #000;
+    @apply rounded-full m-1;
     text-decoration: none;
   }
 </style>

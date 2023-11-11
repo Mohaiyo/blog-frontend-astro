@@ -7,3 +7,37 @@ body {
   background-color: rgba(0, 11, 12, 0.9);
   color: #fff;
 }
+
+.main-container blockquote,dl,
+dd,
+hr,
+figure,
+p,
+pre {
+  margin: 0.5em 0;
+}
+
+.main-container h1 {
+  @apply text-3xl font-bold;
+  margin: 0.5em 0;
+}
+.main-container h2 {
+  @apply text-2xl font-semibold;
+  margin: 0.5em 0;
+}
+.main-container h3 {
+  @apply text-xl font-semibold;
+  margin: 0.5em 0;
+}
+.main-container h4 {
+  @apply text-lg font-semibold;
+  margin: 0.5em 0;
+}
+.main-container h5 {
+  @apply text-sm font-semibold;
+  margin: 0.5em 0;
+}
+.main-container h6 {
+  @apply text-sm font-semibold;
+  margin: 0.5em 0;
+}

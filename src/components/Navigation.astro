@@ -2,7 +2,7 @@
 
 ---
 
-<div class="nav-links">
+<div class="nav-links hidden lg:flex">
   <a href="/">首页</a>
   <a href="/front-end-dev/">前端开发</a>
   <a href="/back-end-dev/">后端开发</a>
@@ -14,17 +14,11 @@
 
 <style lang="scss">
   .nav-links {
-    display: flex;
-    @apply w-full flex flex-auto py-2 px-6 justify-center;
+    @apply w-full flex-auto justify-center px-6 py-2;
     a {
       line-height: 32px;
       @apply px-4;
       color: #333;
-    }
-  }
-  @media screen and (max-width: 768px) {
-    .nav-links {
-      display: none;
     }
   }
   :global(.dark) {

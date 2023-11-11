@@ -9,9 +9,6 @@ image:
 tags: ['astro', 'blogging', 'learning in public', 'vue']
 ---
 
-# vue.js 教程
-
-> 只会记录一些重点难点或者注意点！
 
 ## 模板语法
 
@@ -20,6 +17,9 @@ tags: ['astro', 'blogging', 'learning in public', 'vue']
 > 指令 (Directives) 是带有 v- 前缀的特殊属性。指令属性的值预期是单个 JavaScript 表达式 (v-for 是例外情况，稍后我们再讨论)。指令的职责是，_当表达式的值改变时，将其产生的连带影响，响应式地作用于 DOM_。
 
 - 参数
+- 参数2
+- 参数3
+- 参数四
 
 > 一些指令能够接收一个“参数”，在指令名称之后以冒号表示。例如，v-bind 指令可以用于响应式地更新 HTML 属性：
 

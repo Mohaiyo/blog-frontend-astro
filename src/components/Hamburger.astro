@@ -2,7 +2,7 @@
 
 ---
 
-<div class="hamburger">
+<div class="hamburger flex lg:hidden">
   <span class="hamburger__line"></span>
   <span class="hamburger__line"></span>
   <span class="hamburger__line"></span>
@@ -10,7 +10,7 @@
 
 <style lang="scss">
   .hamburger {
-    @apply p-1 flex flex-col items-center justify-center;
+    @apply p-1 flex-col items-center justify-center;
     &__line {
       border-bottom: 2px solid #000;
       height: 2px;
@@ -27,11 +27,6 @@
       &__line {
         border-bottom-color: #f1f2f4;
       }
-    }
-  }
-  @media screen and (min-width: 768px) {
-    .hamburger {
-      display: none;
     }
   }
 </style>
