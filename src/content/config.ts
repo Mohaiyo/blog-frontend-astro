@@ -15,7 +15,13 @@ const postsCollection = defineCollection({
     tags: z.array(z.string())
   })
 })
+
 // 导出一个单独的 `collections` 对象来注册你的集合
 export const collections = {
-  posts: postsCollection
+  posts: postsCollection,
+  'back-end-dev': postsCollection,
+  'front-end-dev': postsCollection,
+  'db-and-storage': postsCollection,
+  'colund-computing-and-deployment': postsCollection,
+  'tech-tools-and-pratices': postsCollection,
 }

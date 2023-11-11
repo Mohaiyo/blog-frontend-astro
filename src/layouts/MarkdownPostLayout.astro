@@ -4,7 +4,7 @@ import Layout from './Layout.astro'
 interface Props {
   frontmatter: {
     title: string;
-    pubDate: string;
+    pubDate: Date;
     description: string;
     author: string;
     tags: string[],
@@ -19,12 +19,12 @@ const { frontmatter } = Astro.props
 ---
 
 <Layout title={frontmatter.title} >
-  <h1 class="post__title"> {frontmatter.title}</h1>
+  <h1 class="post__title" transition:animate="slide"> {frontmatter.title}</h1>
   <p class="post__descr"><em>{frontmatter.description}</em></p>
   <div class="post__meta-info">
     <span class="post__pub-date">{frontmatter.pubDate && frontmatter.pubDate.toString().slice(0, 10)}</span>
     <span class="post__divider post__divider--vercial"></span>
-    <span class="post__author">{frontmatter.author}</span>
+    <span class="post__author"><a href="/about">{frontmatter.author}</a></span>
   </div>
   <div class="post__cover">
     <img src={frontmatter.image.url} alt={frontmatter.image.alt} />
