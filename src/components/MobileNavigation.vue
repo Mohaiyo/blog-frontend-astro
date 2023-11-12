@@ -56,8 +56,7 @@
       @apply text-2xl;
     }
     &__site-slogan {
-      @apply text-xs;
-      color: #666;
+      @apply text-xs text-gray-500 dark:text-white;
     }
     &__links {
       @apply flex w-full flex-col justify-center px-6 py-2;
