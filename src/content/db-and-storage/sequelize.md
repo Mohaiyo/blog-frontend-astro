@@ -1,16 +1,16 @@
 ---
-title: '学习后端开发技术'
+title: 'Sequelize-cli'
 pubDate: 2022-07-01
-description: '后端开发技术文章。'
+description: '数据库与存储'
 author: Mohaiyo
 image:
   url: 'https://t7.baidu.com/it/u=825057118,3516313570&fm=193&f=GIF'
   alt: 'The full Astro logo.'
-category: '后端开发'
-tags: ['Rust']
+category: '数据库与存储'
+tags: ['Sequelize', 'Sequelize cli']
 ---
 
-# Rust 系列文章
+# Sequelize
 
 > 这是rust系列文章的开端
 

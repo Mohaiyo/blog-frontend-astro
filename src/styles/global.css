@@ -8,12 +8,29 @@ body {
   color: #fff;
 }
 
-.main-container blockquote,dl,
-dd,
-hr,
-figure,
-p,
-pre {
+img {
+  content-visibility: auto;
+}
+
+.main-container blockquote {
+  margin: 0.5em 0;
+}
+.main-container dl {
+  margin: 0.5em 0;
+}
+.main-container dd {
+  margin: 0.5em 0;
+}
+.main-container hr {
+  margin: 0.5em 0;
+}
+.main-container figure {
+  margin: 0.5em 0;
+}
+.main-container p {
+  margin: 0.5em 0;
+}
+.main-container pre {
   margin: 0.5em 0;
 }
 

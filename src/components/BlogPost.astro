@@ -1,7 +1,7 @@
 ---
 interface Props {
-  url: string;
-  title: string;
+  url: string
+  title: string
 }
 const { url, title } = Astro.props
 ---
@@ -12,17 +12,17 @@ const { url, title } = Astro.props
 
 <style lang="scss">
   .category-item {
-      border-bottom: 1px solid #efefef;
-      @apply py-2;
-      a {
-        color: #666;
-      }
+    border-bottom: 1px solid #efefef;
+    @apply py-2;
+    a {
+      color: #666;
     }
-    :global(.dark) {
-      .category-item {
+  }
+  :global(.dark) {
+    .category-item {
       a {
         color: #fff;
       }
     }
-    }
+  }
 </style>

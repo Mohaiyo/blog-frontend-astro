@@ -2,10 +2,10 @@
 import { getCollection } from 'astro:content'
 import Layout from '@layouts/Layout.astro'
 import BlogPost from '@components/BlogPost.astro'
-const allPosts = await getCollection('posts')
+const allPosts = await getCollection('tech-tools-and-practices')
 ---
 
-<Layout title="读书笔记">
+<Layout title="技术工具与实践">
   <ul class="category-list">
     {allPosts.map((post) => <BlogPost url={post.slug} title={post.data.title} />)}
   </ul>

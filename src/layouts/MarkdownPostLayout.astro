@@ -1,31 +1,77 @@
 ---
 import Layout from './Layout.astro'
+import LabelCom from '@components/Label.vue'
+import { categories } from '@data/category'
+import { Image } from 'astro:assets'
 
 interface Props {
   frontmatter: {
-    title: string;
-    pubDate: Date;
-    description: string;
-    author: string;
-    tags: string[],
-    image: {
-      url: string;
+    title: string
+    pubDate: Date
+    description: string
+    author: string
+    category: string
+    tags: string[]
+    minutesRead: number
+    image?: {
+      url: string
       alt: string
     }
   }
 }
 
 const { frontmatter } = Astro.props
+const cateogryItem = categories.find((item) => item.title === frontmatter.category)
+const getFormattedDate = (date: string) =>
+  date
+    ? new Date(date).toLocaleDateString('en-us', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      })
+    : ''
 ---
 
-<Layout title={frontmatter.title} >
-  <h1 class="post__title" transition:animate="slide"> {frontmatter.title}</h1>
-  <p class="post__descr"><b>{frontmatter.description}</b></p>
-  <div class="post__meta-info">
-    发布日期：<span class="post__pub-date">{frontmatter.pubDate && frontmatter.pubDate.toLocaleDateString()}</span>
+<Layout title={frontmatter.title}>
+  <div class="text-center">
+    <LabelCom theme={cateogryItem?.color}>{frontmatter.category}</LabelCom>
   </div>
+
+  <h1 class="post__title"> {frontmatter.title}</h1>
+  <!-- <p class="post__descr"><b>{frontmatter.description}</b></p> -->
+  <div class="text-gray-500 mb-5 mt-3 flex justify-center space-x-3">
+    <div class="flex items-center gap-3">
+      <div class="relative h-10 w-10 flex-shrink-0">
+        {
+          (
+            <Image
+              src={'https://lh3.googleusercontent.com/a/ACg8ocJcSEQVobcMZ6neYsB-iOuL1BcAr-P0f73gmlqcSh1s=s576-c-no'}
+              alt="Author Photo"
+              width={80}
+              height={80}
+              loading="eager"
+              class="rounded-full"
+            />
+          )
+        }
+      </div>
+
+      <div>
+        <div class="text-gray-800 dark:text-gray-400"> Wayne</div>
+        <div class="flex items-center space-x-2 text-sm">
+          <time class="text-gray-500 dark:text-gray-400" datetime={frontmatter.pubDate.toDateString()}>
+            {getFormattedDate(frontmatter.pubDate.toDateString())}
+          </time>
+          <span>
+            · {frontmatter?.minutesRead}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="post__cover">
-    <img src={frontmatter.image.url} alt={frontmatter.image.alt} />
+    <img src={frontmatter.image?.url} alt={frontmatter.image?.alt} />
   </div>
 
   <div class="post__tags">
@@ -43,17 +89,17 @@ const { frontmatter } = Astro.props
 <style lang="scss">
   .post {
     &__title {
-      font-size: 32px;
+      @apply dark:text-white mb-3 mt-2 text-center text-3xl font-semibold tracking-tight lg:text-4xl lg:leading-snug;
     }
     &__descr {
-      @apply text-sm;
+      @apply text-center text-sm;
       color: #999;
     }
     &__meta-info {
-      @apply text-sm flex gap-1 mb-2 items-center;
+      @apply mb-2 flex items-center gap-1 text-sm;
       color: #999;
     }
-    &__cover{
+    &__cover {
       @apply mb-2;
       overflow: hidden;
       border-radius: 8px;
@@ -76,10 +122,10 @@ const { frontmatter } = Astro.props
     &__tag {
       margin: 4px;
       border-radius: 999px;
-      background-image: linear-gradient( 135deg, #ABDCFF 10%, #0396FF 100%);
-      @apply text-sm px-4 py-2;
+      background-image: linear-gradient(135deg, #abdcff 10%, #0396ff 100%);
+      @apply px-4 py-2 text-sm;
     }
-    &__divider{
+    &__divider {
       width: 1px;
       background-color: #666;
       height: 12px;

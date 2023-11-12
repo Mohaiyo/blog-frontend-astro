@@ -4,14 +4,7 @@ import Social from './Social.astro'
 
 <footer class="footer">
   <div class="footer-container">
-    <!-- <div class="social-media">
-      <div>
-        <span>社媒:</span>
-      </div>
-      <Social platform="twitter" username="mohaiyo" />
-      <Social platform="github" username="mohaiyo" />
-    </div> -->
-    <div class="text-sm text-gray text-center">&copy;2023. All right reserved;</div>
+    <div class="text-center text-sm text-black dark:text-white">Copyright &copy;2023 Mohaiyo. All right reserved</div>
   </div>
 </footer>
 
@@ -21,9 +14,9 @@ import Social from './Social.astro'
     z-index: 9;
 
     &-container {
-      @apply container mx-auto px-2 py-4;
+      @apply container mx-auto mt-10 max-w-screen-lg px-8 py-5 lg:py-8 xl:px-5;
       .social-media {
-        @apply text-sm flex items-center;
+        @apply flex items-center text-sm;
       }
     }
   }

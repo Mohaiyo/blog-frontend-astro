@@ -70,12 +70,10 @@
   })
 </script>
 
-
-
 <script>
   document.addEventListener('astro:after-swap', () => {
     localStorage.getItem('theme') === 'dark'
-    ? document.documentElement.classList.add("dark")
-    : document.documentElement.classList.add("light");
-  });
+      ? document.documentElement.classList.add('dark')
+      : document.documentElement.classList.add('light')
+  })
 </script>

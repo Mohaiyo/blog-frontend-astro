@@ -1,5 +1,9 @@
 <template>
   <div class="site-mobile-nav">
+    <div class="site-mobile-nav__logo">
+      <a class="site-mobile-nav__site-logo">TechConnect</a>
+      <p class="site-mobile-nav__site-slogan">创造，连接，改变世界</p>
+    </div>
     <div class="site-mobile-nav__links">
       <a href="/">首页</a>
       <a href="/front-end-dev/">前端开发</a>
@@ -45,11 +49,21 @@
     transform: translateX(110%);
     box-shadow: -10px 0 20px -10px rgba(0, 0, 0, 0.1);
     transition: 0.3s all ease-in-out;
+    &__logo {
+      @apply px-6;
+    }
+    &__site-logo {
+      @apply text-2xl;
+    }
+    &__site-slogan {
+      @apply text-xs;
+      color: #666;
+    }
     &__links {
       @apply flex w-full flex-col justify-center px-6 py-2;
       a {
         line-height: 32px;
-        @apply px-4 py-1 underline underline-offset-1;
+        @apply py-1 underline underline-offset-1;
         color: #333;
       }
     }

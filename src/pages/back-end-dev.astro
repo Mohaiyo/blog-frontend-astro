@@ -1,8 +1,8 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection } from 'astro:content'
 import Layout from '@layouts/Layout.astro'
 import BlogPost from '@components/BlogPost.astro'
-const allPosts = await getCollection("back-end-dev");
+const allPosts = await getCollection('back-end-dev')
 ---
 
 <Layout title="后端开发">
@@ -13,6 +13,5 @@ const allPosts = await getCollection("back-end-dev");
 
 <style lang="scss">
   .category-list {
-    
   }
 </style>

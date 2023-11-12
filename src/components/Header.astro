@@ -1,9 +1,10 @@
 ---
-import Hamburger from './Hamburger.astro';
-import Navigation from './Navigation.astro';
-import ThemeIcon from './ThemeIcon.astro';
-import MobileNavigation from './MobileNavigation.vue';
+import Hamburger from './Hamburger.astro'
+import Navigation from './Navigation.astro'
+import ThemeIcon from './ThemeIcon.astro'
+import MobileNavigation from './MobileNavigation.vue'
 ---
+
 <header class="header">
   <div class="header-container">
     <div class="header-logo">
@@ -17,21 +18,19 @@ import MobileNavigation from './MobileNavigation.vue';
         <ThemeIcon />
         <Hamburger />
       </div>
-     
     </nav>
   </div>
 </header>
 
 <style lang="scss">
   .header {
-    
     position: sticky;
     top: 0;
     background-color: #fff;
     z-index: 9;
 
     &-container {
-      @apply container mx-auto p-2 flex justify-between items-center;
+      @apply container mx-auto px-4 py-2 flex justify-between items-center;
     }
     .header-logo {
       &__site-logo {
@@ -47,7 +46,7 @@ import MobileNavigation from './MobileNavigation.vue';
       width: 100%;
     }
     .header-nav__mobile {
-      @apply flex;
+      @apply flex gap-2;
       flex: 0 1 64px;
     }
   }
@@ -62,7 +61,5 @@ import MobileNavigation from './MobileNavigation.vue';
         }
       }
     }
-    
   }
-
 </style>

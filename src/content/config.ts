@@ -8,6 +8,7 @@ const postsCollection = defineCollection({
     pubDate: z.date(),
     description: z.string(),
     author: z.string(),
+    category: z.string().trim(),
     image: z.object({
       url: z.string(),
       alt: z.string()
@@ -22,6 +23,6 @@ export const collections = {
   'back-end-dev': postsCollection,
   'front-end-dev': postsCollection,
   'db-and-storage': postsCollection,
-  'colund-computing-and-deployment': postsCollection,
-  'tech-tools-and-pratices': postsCollection,
+  'cloud-computing-and-deployment': postsCollection,
+  'tech-tools-and-practices': postsCollection
 }

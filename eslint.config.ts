@@ -5,8 +5,8 @@ export default {
     'plugin:astro/recommended'
   ],
   parserOptions: {
-    "sourceType": "module",
-    "ecmaVersion": "latest"
+    sourceType: 'module',
+    ecmaVersion: 'latest'
   },
   // ...
   overrides: [

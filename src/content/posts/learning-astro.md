@@ -1,6 +1,7 @@
 ---
 title: 'Learning About Markdown in Astro'
 pubDate: 2022-07-01
+category: '读书笔记'
 description: '这是我 Astro 博客的第一篇文章。'
 author: Astro Learner
 image:
