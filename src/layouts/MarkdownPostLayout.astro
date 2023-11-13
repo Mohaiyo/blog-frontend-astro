@@ -3,6 +3,7 @@ import Layout from './Layout.astro'
 import LabelCom from '@components/Label.vue'
 import { categories } from '@data/category'
 import { Image } from 'astro:assets'
+import { getFormattedDate } from '@utils/index'
 
 interface Props {
   frontmatter: {
@@ -22,14 +23,7 @@ interface Props {
 
 const { frontmatter } = Astro.props
 const cateogryItem = categories.find((item) => item.title === frontmatter.category)
-const getFormattedDate = (date: string) =>
-  date
-    ? new Date(date).toLocaleDateString('en-us', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric'
-      })
-    : ''
+
 ---
 
 <Layout title={frontmatter.title}>

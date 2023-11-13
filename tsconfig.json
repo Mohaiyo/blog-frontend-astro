@@ -11,6 +11,7 @@
       "@styles/*": ["src/styles/*"],
       "@plugins/*": ["src/plugins/*"],
       "@data/*": ["src/data/*"],
+      "@utils/*": ["src/utils/*"],
     }
   }
 }

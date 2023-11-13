@@ -1,0 +1,85 @@
+---
+import { Image, Picture } from 'astro:assets'
+import Label from '@components/Label.vue'
+import type { CategoryItem } from '@data/category'
+import { categories } from '@data/category'
+import { getFormattedDate } from '@utils/index'
+
+const { post, aspect, preloadImage } = Astro.props
+const author = {
+  image: 'https://lh3.googleusercontent.com/a/ACg8ocJcSEQVobcMZ6neYsB-iOuL1BcAr-P0f73gmlqcSh1s=s576-c-no',
+  name: 'Wayne'
+}
+const category = categories.find((item) => item.title === post.data.category) as CategoryItem
+---
+
+<div class="group cursor-pointer">
+  <div
+    class="bg-gray-100 dark:bg-gray-800 relative overflow-hidden rounded-md transition-all hover:scale-105"
+    class:list={[aspect === 'landscape' ? 'aspect-video' : 'aspect-square']}
+  >
+    <a href={'/posts/' + post.slug}>
+      {
+        post.data.image.url ? (
+          <Picture
+            src={post.data.image.url}
+            widths={[200, 400, 800]}
+            sizes="(max-width: 640px) 90vw, 480px"
+            alt="Thumbnail"
+            width={200}
+            height={200}
+            loading={preloadImage ? 'eager' : 'lazy'}
+            class="h-full w-full rounded-md"
+          />
+        ) : (
+          <span class="text-gray-200 absolute left-1/2 top-1/2 h-16 w-16 -translate-x-1/2 -translate-y-1/2">
+            <svg
+              class="icon"
+              viewBox="0 0 1024 1024"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              p-id="23681"
+              width="128"
+              height="128"
+            >
+              <path
+                d="M896 213.333333a85.333333 85.333333 0 0 0-85.333333-85.333333H213.333333a85.333333 85.333333 0 0 0-85.333333 85.333333v597.333334a85.333333 85.333333 0 0 0 85.333333 85.333333h597.333334a85.333333 85.333333 0 0 0 85.333333-85.333333zM405.333333 341.333333A64 64 0 1 1 341.333333 405.333333 64 64 0 0 1 405.333333 341.333333z m362.666667 405.333334a21.333333 21.333333 0 0 1-21.333333 21.333333h-469.333334a21.333333 21.333333 0 0 1-21.333333-21.333333v-14.08a21.76 21.76 0 0 1 4.266667-12.8l101.12-135.253334a21.76 21.76 0 0 1 34.56 0l42.666666 58.026667a21.333333 21.333333 0 0 0 33.706667 0l97.706667-122.88a21.333333 21.333333 0 0 1 33.28 0l159.573333 199.253333a22.186667 22.186667 0 0 1 4.693333 13.653334z"
+                p-id="23682"
+              />
+            </svg>
+          </span>
+        )
+      }
+    </a>
+  </div>
+
+  <a href="#">
+    <Label theme={category.color}>{category.title}</Label>
+  </a>
+  <h2 class="text-brand-primary dark:text-white mt-2 text-lg font-semibold tracking-normal">
+    <a href={'/posts/' + post.slug}>
+      <span
+        class="from-green-200 to-green-100 dark:from-purple-800 dark:to-purple-900 bg-gradient-to-r bg-[length:0px_10px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 hover:bg-[length:100%_3px] group-hover:bg-[length:100%_10px]"
+      >
+        {post.data.title}
+      </span>
+    </a>
+  </h2>
+
+  <div class="text-gray-500 dark:text-gray-400 mt-3 flex items-center space-x-3">
+    <div class="flex items-center gap-3">
+      <div class="relative h-5 w-5 flex-shrink-0">
+        {
+          author.image && (
+            <Image src={author.image} alt="Author Photo" width={40} height={40} loading="lazy" class="rounded-full" />
+          )
+        }
+      </div>
+      <span class="text-sm">{author.name}</span>
+    </div>
+    <span class="text-gray-300 dark:text-gray-600 text-xs"> &bull;</span>
+    <time class="text-sm" datetime={post.data.pubDate}>
+      {getFormattedDate(post.data.pubDate)}
+    </time>
+  </div>
+</div>
