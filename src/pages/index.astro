@@ -1,7 +1,6 @@
 ---
 import Layout from '@layouts/Layout.astro'
 import PostList from '@components/PostList.astro'
-import Card from '@components/Card.astro'
 import { latestPosts } from '@utils/index'
 
 const lastestTwoPost = (await latestPosts()).slice(0, 2)

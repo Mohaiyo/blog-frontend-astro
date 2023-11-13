@@ -4,21 +4,18 @@ import Label from '@components/Label.vue'
 import type { CategoryItem } from '@data/category'
 import { categories } from '@data/category'
 import { getFormattedDate } from '@utils/index'
+import avatarImg from '../assets/Monkey_D_Luffy.png'
 
-const { post, aspect, preloadImage } = Astro.props
-const author = {
-  image: 'https://lh3.googleusercontent.com/a/ACg8ocJcSEQVobcMZ6neYsB-iOuL1BcAr-P0f73gmlqcSh1s=s576-c-no',
-  name: 'Wayne'
-}
+const { post, preloadImage } = Astro.props
 const category = categories.find((item) => item.title === post.data.category) as CategoryItem
 ---
 
 <div class="group cursor-pointer">
   <div
     class="bg-gray-100 dark:bg-gray-800 relative overflow-hidden rounded-md transition-all hover:scale-105"
-    class:list={[aspect === 'landscape' ? 'aspect-video' : 'aspect-square']}
+    class:list={['aspect-video']}
   >
-    <a href={'/posts/' + post.slug}>
+    <a href={`/${post.collection}/` + post.slug}>
       {
         post.data.image.url ? (
           <Picture
@@ -53,11 +50,11 @@ const category = categories.find((item) => item.title === post.data.category) as
     </a>
   </div>
 
-  <a href="#">
+  <a href={category.slug} title={category.description} target="_blank">
     <Label theme={category.color}>{category.title}</Label>
   </a>
   <h2 class="text-brand-primary dark:text-white mt-2 text-lg font-semibold tracking-normal">
-    <a href={'/posts/' + post.slug}>
+    <a href={`/${post.collection}/` + post.slug}>
       <span
         class="from-green-200 to-green-100 dark:from-purple-800 dark:to-purple-900 bg-gradient-to-r bg-[length:0px_10px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 hover:bg-[length:100%_3px] group-hover:bg-[length:100%_10px]"
       >
@@ -66,18 +63,18 @@ const category = categories.find((item) => item.title === post.data.category) as
     </a>
   </h2>
 
-  <div class="text-gray-500 dark:text-gray-400 mt-3 flex items-center space-x-3">
-    <div class="flex items-center gap-3">
+  <div class="text-gray-500 dark:text-gray-400 mt-3 flex items-center space-x-2">
+    <div class="flex items-center gap-2">
       <div class="relative h-5 w-5 flex-shrink-0">
-        {
-          author.image && (
-            <Image src={author.image} alt="Author Photo" width={40} height={40} loading="lazy" class="rounded-full" />
-          )
-        }
+        <a href="/about">
+          <Image src={avatarImg} alt="monkey d luffy" class="rounded-full" />
+        </a>
       </div>
-      <span class="text-sm">{author.name}</span>
+      <a href="/about">
+        <span class="text-sm">WAYNE.LIANG</span>
+      </a>
     </div>
-    <span class="text-gray-300 dark:text-gray-600 text-xs"> &bull;</span>
+    <span class="text-gray-300 dark:text-gray-600 text-sm"> &bull;</span>
     <time class="text-sm" datetime={post.data.pubDate}>
       {getFormattedDate(post.data.pubDate)}
     </time>
