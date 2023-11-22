@@ -1,6 +1,7 @@
 ---
 import Layout from './Layout.astro'
 import LabelCom from '@components/Label.vue'
+import Prose from "@components/Prose.astro";
 import { categories } from '@data/category'
 import { Image } from 'astro:assets'
 import { getFormattedDate } from '@utils/index'
@@ -27,57 +28,59 @@ const cateogryItem = categories.find((item) => item.title === frontmatter.catego
 ---
 
 <Layout title={frontmatter.title}>
-  <div class="text-center">
-    <LabelCom theme={cateogryItem?.color}>{frontmatter.category}</LabelCom>
-  </div>
+  <Prose>
+    <div class="text-center">
+      <LabelCom theme={cateogryItem?.color}>{frontmatter.category}</LabelCom>
+    </div>
 
-  <h1 class="post__title"> {frontmatter.title}</h1>
-  <!-- <p class="post__descr"><b>{frontmatter.description}</b></p> -->
-  <div class="text-gray-500 mb-5 mt-3 flex justify-center space-x-3">
-    <div class="flex items-center gap-3">
-      <div class="relative h-10 w-10 flex-shrink-0">
-        {
-          (
-            <Image
-              src={'https://lh3.googleusercontent.com/a/ACg8ocJcSEQVobcMZ6neYsB-iOuL1BcAr-P0f73gmlqcSh1s=s576-c-no'}
-              alt="Author Photo"
-              width={80}
-              height={80}
-              loading="eager"
-              class="rounded-full"
-            />
-          )
-        }
-      </div>
+    <h1 class="post__title"> {frontmatter.title}</h1>
+    <!-- <p class="post__descr"><b>{frontmatter.description}</b></p> -->
+    <div class="text-gray-500 mb-5 mt-3 flex justify-center space-x-3">
+      <div class="flex items-center gap-3">
+        <div class="relative h-10 w-10 flex-shrink-0">
+          {
+            (
+              <Image
+                src={'https://lh3.googleusercontent.com/a/ACg8ocJcSEQVobcMZ6neYsB-iOuL1BcAr-P0f73gmlqcSh1s=s576-c-no'}
+                alt="Author Photo"
+                width={80}
+                height={80}
+                loading="eager"
+                class="rounded-full"
+              />
+            )
+          }
+        </div>
 
-      <div>
-        <div class="text-gray-800 dark:text-gray-400"> Wayne</div>
-        <div class="flex items-center space-x-2 text-sm">
-          <time class="text-gray-500 dark:text-gray-400" datetime={frontmatter.pubDate.toDateString()}>
-            {getFormattedDate(frontmatter.pubDate.toDateString())}
-          </time>
-          <span>
-            · {frontmatter?.minutesRead}
-          </span>
+        <div>
+          <div class="text-gray-800 dark:text-gray-400"> Wayne</div>
+          <div class="flex items-center space-x-2 text-sm">
+            <time class="text-gray-500 dark:text-gray-400" datetime={frontmatter.pubDate.toDateString()}>
+              {getFormattedDate(frontmatter.pubDate.toDateString())}
+            </time>
+            <span>
+              · {frontmatter?.minutesRead}
+            </span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="post__cover">
-    <img src={frontmatter.image?.url} alt={frontmatter.image?.alt} />
-  </div>
+    <div class="post__cover">
+      <img src={frontmatter.image?.url} alt={frontmatter.image?.alt} />
+    </div>
 
-  <div class="post__tags">
-    {
-      frontmatter.tags.map((tag) => (
-        <p class="post__tag">
-          <a href={`/tags/${tag}`}>{tag}</a>
-        </p>
-      ))
-    }
-  </div>
-  <slot />
+    <div class="post__tags">
+      {
+        frontmatter.tags.map((tag) => (
+          <p class="post__tag">
+            <a href={`/tags/${tag}`}>{tag}</a>
+          </p>
+        ))
+      }
+    </div>
+    <slot />
+  </Prose>
 </Layout>
 
 <style lang="scss">

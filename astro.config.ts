@@ -2,6 +2,8 @@ import { defineConfig, squooshImageService } from 'astro/config'
 import tailwind from '@astrojs/tailwind'
 import vue from '@astrojs/vue'
 import { remarkReadingTime } from './src/plugins/remark-reading-time'
+import mdx from '@astrojs/mdx'
+import fs from 'node:fs'
 
 // https://astro.build/config
 export default defineConfig({
@@ -9,9 +11,19 @@ export default defineConfig({
   image: {
     service: squooshImageService()
   },
-  integrations: [tailwind(), vue()],
+  integrations: [
+    tailwind({
+      applyBaseStyles: true
+    }),
+    vue(),
+    mdx()
+  ],
   markdown: {
     remarkPlugins: [remarkReadingTime],
-    syntaxHighlight: 'prism'
+    syntaxHighlight: 'shiki',
+    shikiConfig: {
+      theme: JSON.parse(fs.readFileSync('./houston.theme.json', { encoding: 'utf-8' }))
+    },
+    rehypePlugins: []
   }
 })
