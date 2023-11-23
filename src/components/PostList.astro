@@ -59,7 +59,7 @@ const category = categories.find((item) => item.title === post.data.category) as
     </a>
   </div>
 
-  <a href={category.slug} title={category.description} target="_blank">
+  <a class="mt-2 inline-block p-1" href={`/${category.slug}`} title={category.description} target="_self">
     <Label theme={category.color}>{category.title}</Label>
   </a>
   <h2 class="text-brand-primary dark:text-white mt-2 text-lg font-semibold tracking-normal">
