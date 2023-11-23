@@ -29,7 +29,7 @@ const cateogryItem = categories.find((item) => item.title === frontmatter.catego
 
 <Layout title={frontmatter.title}>
   <Prose>
-    <div class="text-center">
+    <div class="text-center not-prose">
       <LabelCom theme={cateogryItem?.color}>{frontmatter.category}</LabelCom>
     </div>
 
@@ -46,13 +46,13 @@ const cateogryItem = categories.find((item) => item.title === frontmatter.catego
                 width={80}
                 height={80}
                 loading="eager"
-                class="rounded-full"
+                class="rounded-full not-prose"
               />
             )
           }
         </div>
 
-        <div>
+        <div class="not-prose">
           <div class="text-gray-800 dark:text-gray-400"> Wayne</div>
           <div class="flex items-center space-x-2 text-sm">
             <time class="text-gray-500 dark:text-gray-400" datetime={frontmatter.pubDate.toDateString()}>
@@ -66,11 +66,11 @@ const cateogryItem = categories.find((item) => item.title === frontmatter.catego
       </div>
     </div>
 
-    <div class="post__cover">
+    <div class="post__cover not-prose">
       <img src={frontmatter.image?.url} alt={frontmatter.image?.alt} />
     </div>
 
-    <div class="post__tags">
+    <div class="post__tags not-prose">
       {
         frontmatter.tags.map((tag) => (
           <p class="post__tag">
@@ -119,8 +119,7 @@ const cateogryItem = categories.find((item) => item.title === frontmatter.catego
     &__tag {
       margin: 4px;
       border-radius: 999px;
-      background-image: linear-gradient(135deg, #abdcff 10%, #0396ff 100%);
-      @apply px-4 py-2 text-sm;
+      @apply px-4 py-1 text-sm bg-sky-300 hover:bg-sky-400 uppercase cursor-pointer;
     }
     &__divider {
       width: 1px;

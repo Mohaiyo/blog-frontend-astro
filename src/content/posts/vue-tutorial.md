@@ -7,7 +7,7 @@ image:
   url: 'https://t7.baidu.com/it/u=825057118,3516313570&fm=193&f=GIF'
   alt: 'The full Astro logo.'
 category: '读书笔记'
-tags: ['astro', 'blogging', 'learning in public', 'vue']
+tags: ['vue']
 ---
 
 ## 模板语法

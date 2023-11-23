@@ -2,7 +2,7 @@ import type { Config } from 'tailwindcss'
 import typography from '@tailwindcss/typography'
 
 export default {
-  content: ['./src/**/*.{astro,html,js,jsx,mdx,ts,tsx,vue}'],
+  content: ['./src/**/*.{astro,html,js,jsx,mdx,ts,tsx,vue,md}'],
   darkMode: 'class',
   theme: {
     fontFamily: {
@@ -17,7 +17,7 @@ export default {
       borderRadius: {
         '4xl': '2rem'
       }
-    },
-    plugins: [typography({ target: 'modern' })]
-  }
+    }
+  },
+  plugins: [typography({ target: 'modern' })]
 } satisfies Config
