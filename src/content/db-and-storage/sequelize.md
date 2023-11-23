@@ -1,11 +1,11 @@
 ---
 title: 'Sequelize-cli'
-pubDate: 2022-07-01
+pubDate: 2021-07-01
 description: '数据库与存储'
-author: Wayne
+author: Wayne.Liang
 image:
-  url: 'https://t7.baidu.com/it/u=825057118,3516313570&fm=193&f=GIF'
-  alt: 'The full Astro logo.'
+  url: ''
+  alt: ''
 category: '数据库与存储'
 tags: ['Sequelize', 'Sequelize cli']
 ---

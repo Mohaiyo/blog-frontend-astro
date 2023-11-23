@@ -2,10 +2,10 @@
 title: '14 Architectural Design Ideas for a Spacious Interior'
 pubDate: 2022-07-01
 description: '这是我 Astro 博客的第一篇文章。'
-author: 'Wayne'
+author: 'Wayne.Liang'
 image:
-  url: 'https://t7.baidu.com/it/u=825057118,3516313570&fm=193&f=GIF'
-  alt: 'The full Astro logo.'
+  url: ''
+  alt: ''
 category: '读书笔记'
 tags: ['vue']
 ---

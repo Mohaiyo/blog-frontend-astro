@@ -1,19 +1,20 @@
 ---
 import Layout from '@layouts/Layout.astro'
 import PostList from '@components/PostList.astro'
-import { latestPosts } from '@utils/index'
+import { fetchAllPost } from '@utils/index'
 
-const lastestTwoPost = (await latestPosts()).slice(0, 2)
-const restPost = (await latestPosts()).slice(2)
+const { allPosts } = await fetchAllPost()
+const lastestTwoPost = allPosts.slice(0, 2)
+const restPost = allPosts.slice(2)
 ---
 
 <Layout title="Tech Connect: 探索科技世界的无限可能">
   <main>
     <div class="grid gap-10 md:grid-cols-2 lg:gap-10">
-      {lastestTwoPost.map((post) => <PostList post={post} aspect="landscape" preloadImage={true} />)}
+      {lastestTwoPost.map((post) => <PostList post={post} preloadImage={true} />)}
     </div>
     <div class="mt-10 grid gap-10 md:grid-cols-2 lg:gap-10 xl:grid-cols-3">
-      {restPost.map((post) => <PostList post={post} aspect="square" />)}
+      {restPost.map((post) => <PostList post={post} />)}
     </div>
   </main>
 </Layout>

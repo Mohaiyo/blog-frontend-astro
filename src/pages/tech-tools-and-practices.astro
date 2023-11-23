@@ -1,17 +1,15 @@
 ---
-import { getCollection } from 'astro:content'
 import Layout from '@layouts/Layout.astro'
-import BlogPost from '@components/BlogPost.astro'
-const allPosts = await getCollection('tech-tools-and-practices')
+import { fetchAllPost } from '@utils/index'
+import PostList from '@components/PostList.astro'
+const { techToolsAndPractices } = await fetchAllPost()
 ---
 
 <Layout title="技术工具与实践">
-  <ul class="category-list">
-    {allPosts.map((post) => <BlogPost url={post.slug} title={post.data.title} />)}
-  </ul>
+  <main>
+    <div class="mt-10 grid gap-10 md:grid-cols-2 lg:gap-10 xl:grid-cols-3">
+      {techToolsAndPractices.map((post) => <PostList post={post} />)}
+    </div>
+  </main>
 </Layout>
 
-<style lang="scss">
-  .category-list {
-  }
-</style>

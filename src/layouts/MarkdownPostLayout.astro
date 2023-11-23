@@ -5,6 +5,7 @@ import Prose from "@components/Prose.astro";
 import { categories } from '@data/category'
 import { Image } from 'astro:assets'
 import { getFormattedDate } from '@utils/index'
+import avatarImg from '../assets/Monkey_D_Luffy.png'
 
 interface Props {
   frontmatter: {
@@ -34,31 +35,22 @@ const cateogryItem = categories.find((item) => item.title === frontmatter.catego
     </div>
 
     <h1 class="post__title"> {frontmatter.title}</h1>
-    <!-- <p class="post__descr"><b>{frontmatter.description}</b></p> -->
-    <div class="text-gray-500 mb-5 mt-3 flex justify-center space-x-3">
+    <p class="post__descr"><b>{frontmatter.description}</b></p>
+    <div class="not-prose text-gray-500 mb-5 mt-3 flex justify-center space-x-3">
       <div class="flex items-center gap-3">
         <div class="relative h-10 w-10 flex-shrink-0">
-          {
-            (
-              <Image
-                src={'https://lh3.googleusercontent.com/a/ACg8ocJcSEQVobcMZ6neYsB-iOuL1BcAr-P0f73gmlqcSh1s=s576-c-no'}
-                alt="Author Photo"
-                width={80}
-                height={80}
-                loading="eager"
-                class="rounded-full not-prose"
-              />
-            )
-          }
+          <a href="/about" target="_blank">
+            <Image src={avatarImg} alt="monkey d luffy" class="rounded-full" />
+          </a>
         </div>
 
-        <div class="not-prose">
-          <div class="text-gray-800 dark:text-gray-400"> Wayne</div>
+        <div >
+          <div class="text-gray-800 dark:text-white"> <a href="/about" target="_blank">{frontmatter.author}</a></div>
           <div class="flex items-center space-x-2 text-sm">
-            <time class="text-gray-500 dark:text-gray-400" datetime={frontmatter.pubDate.toDateString()}>
+            <time class="text-gray-500 dark:text-white" datetime={frontmatter.pubDate.toDateString()}>
               {getFormattedDate(frontmatter.pubDate.toDateString())}
             </time>
-            <span>
+            <span class="text-gray-500 dark:text-white">
               · {frontmatter?.minutesRead}
             </span>
           </div>
@@ -89,12 +81,10 @@ const cateogryItem = categories.find((item) => item.title === frontmatter.catego
       @apply dark:text-white mb-3 mt-2 text-center text-3xl font-semibold tracking-tight lg:text-4xl lg:leading-snug;
     }
     &__descr {
-      @apply text-center text-sm;
-      color: #999;
+      @apply text-center text-gray-400 dark:text-white;
     }
     &__meta-info {
-      @apply mb-2 flex items-center gap-1 text-sm;
-      color: #999;
+      @apply mb-2 flex items-center gap-1 text-sm text-gray-400 dark:text-white;
     }
     &__cover {
       @apply mb-2;
@@ -119,7 +109,7 @@ const cateogryItem = categories.find((item) => item.title === frontmatter.catego
     &__tag {
       margin: 4px;
       border-radius: 999px;
-      @apply px-4 py-1 text-sm bg-sky-300 hover:bg-sky-400 uppercase cursor-pointer;
+      @apply px-4 py-1 text-sm bg-amber-500 hover:bg-amber-600 uppercase cursor-pointer;
     }
     &__divider {
       width: 1px;
