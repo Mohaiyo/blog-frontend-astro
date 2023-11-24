@@ -5,7 +5,7 @@
       <p class="site-mobile-nav__site-slogan">创造，连接，改变世界</p>
     </div>
     <div class="site-mobile-nav__links">
-      <a v-for="item of categoriesWithHomePage" :key="item.slug" :href="item.slug">{{ item.title }}</a>
+      <a v-for="item of categoriesWithHomePage" :key="item.slug" :href="`/${item.slug}`">{{ item.title }}</a>
     </div>
     <span class="site-mobile-nav__close-icon">
       <svg
@@ -31,7 +31,7 @@
 <script setup lang="ts">
   import { categories, type CategoryItem } from '@data/category'
   const categoriesWithHomePage: (CategoryItem | { title: '首页'; slug: string; description?: string })[] = [
-    { title: '首页', slug: '/', description: 'Home page' },
+    { title: '首页', slug: '', description: 'Home page' },
     ...categories
   ]
 </script>
