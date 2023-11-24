@@ -5,13 +5,7 @@
       <p class="site-mobile-nav__site-slogan">创造，连接，改变世界</p>
     </div>
     <div class="site-mobile-nav__links">
-      <a href="/">首页</a>
-      <a href="/front-end-dev/">前端开发</a>
-      <a href="/back-end-dev/">后端开发</a>
-      <a href="/db-and-storage/">数据库与存储</a>
-      <a href="/cloud-computing-and-deployment/">云计算与部署</a>
-      <a href="/tech-tools-and-practices/">技术工具与实践</a>
-      <a href="/posts/">读书笔记</a>
+      <a v-for="item of categoriesWithHomePage" :key="item.slug" :href="item.slug">{{ item.title }}</a>
     </div>
     <span class="site-mobile-nav__close-icon">
       <svg
@@ -34,7 +28,13 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup lang="ts">
+  import { categories, type CategoryItem } from '@data/category'
+  const categoriesWithHomePage: (CategoryItem | { title: '首页'; slug: string; description?: string })[] = [
+    { title: '首页', slug: '/', description: 'Home page' },
+    ...categories
+  ]
+</script>
 
 <style lang="scss" scoped>
   .header-nav .site-mobile-nav {

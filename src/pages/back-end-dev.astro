@@ -6,10 +6,8 @@ const { backEndDev } = await fetchAllPost()
 ---
 
 <Layout title="后端开发">
-  <main>
-    <div class="mt-10 grid gap-10 md:grid-cols-2 lg:gap-10 xl:grid-cols-3">
-      {backEndDev.map((post) => <PostList post={post} />)}
-    </div>
-  </main>
+  <div class="mt-10 grid gap-10 md:grid-cols-2 lg:gap-10 xl:grid-cols-3">
+    {backEndDev.map((post) => <PostList post={post} />)}
+  </div>
 </Layout>
 

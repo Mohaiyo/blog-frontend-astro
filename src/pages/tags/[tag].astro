@@ -21,11 +21,9 @@ const { posts } = Astro.props
 ---
 
 <Layout title={tag}>
-  <main>
-    <div class="text-xl font-semibold text-center text-sky-500">Posts tagged with {tag.toLocaleUpperCase()}</div>
-    <div class="mt-10 grid gap-10 md:grid-cols-2 lg:gap-10 xl:grid-cols-3">
-      {posts.map((post) => <PostList post={post} />)}
-    </div>
-  </main>
+  <div class="text-xl font-semibold text-center text-sky-500">Posts tagged with {tag.toLocaleUpperCase()}</div>
+  <div class="mt-10 grid gap-10 md:grid-cols-2 lg:gap-10 xl:grid-cols-3">
+    {posts.map((post) => <PostList post={post} />)}
+  </div>
 </Layout>
 

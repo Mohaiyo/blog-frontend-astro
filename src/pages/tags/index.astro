@@ -1,7 +1,8 @@
 ---
 import { getCollection } from 'astro:content'
 import Layout from '@layouts/Layout.astro'
-const allPosts = await getCollection('posts')
+import { fetchAllPost } from '@utils/index'
+const { allPosts } = await fetchAllPost()
 const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())]
 const pageTitle = 'Tag Index'
 ---
@@ -10,7 +11,7 @@ const pageTitle = 'Tag Index'
   <div class="tags">
     {
       tags.map((tag) => (
-        <p class="tags__item">
+        <p class="tags__tag-item">
           <a href={`/tags/${tag}`}>{tag}</a>
         </p>
       ))
@@ -18,22 +19,17 @@ const pageTitle = 'Tag Index'
   </div>
 </Layout>
 
-<style>
-  a {
-    color: #00539f;
-  }
+<style lang="scss">
 
   .tags {
-    display: flex;
-    flex-wrap: wrap;
+    @apply flex items-center gap-2 justify-start flex-wrap;
+    &__tag-item {
+      @apply text-white px-4 py-1 text-sm bg-amber-500 hover:bg-amber-600 uppercase cursor-pointer rounded-full;
+      a {
+        @apply text-white;
+      }
+    }
   }
 
-  .tags__item {
-    margin: 0.25em;
-    border: dotted 1px #a1a1a1;
-    border-radius: 0.5em;
-    padding: 0.5em 1em;
-    font-size: 1.15em;
-    background-color: #f8fcfd;
-  }
+
 </style>
