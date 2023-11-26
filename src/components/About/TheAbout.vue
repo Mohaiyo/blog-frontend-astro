@@ -1,7 +1,7 @@
 <template>
   <article class="about" :class="{ active: active }" data-page="about">
     <header>
-      <h2 class="h2 article-title">About me</h2>
+      <h2 class="h2 article-title">关于我</h2>
     </header>
 
     <section class="about-text">
@@ -116,13 +116,13 @@
     @apply capitalize dark:text-white;
   }
   .h2 {
-    @apply text-3xl;
+    @apply text-2xl xl:text-3xl;
   }
   .h3 {
-    @apply text-2xl;
+    @apply text-xl xl:text-2xl;
   }
   .h4 {
-    @apply text-xl;
+    @apply text-lg xl:text-xl;
   }
   .article-title {
     @apply relative pb-2;

@@ -32,15 +32,15 @@
   const navBarList: { value: NavBarType; label: string }[] = [
     {
       value: 'about',
-      label: 'About'
+      label: '关于我'
     },
     {
       value: 'resume',
-      label: 'Resume'
+      label: '简历'
     },
     {
       value: 'portfolio',
-      label: 'Portfolio'
+      label: '作品集'
     }
   ]
 
@@ -58,7 +58,7 @@
     .navbar-link {
       @apply px-2 py-5 text-xs text-gray-400 transition-colors sm:text-[14px] md:text-[16px] lg:font-medium;
       &.active {
-        @apply text-stone-700 dark:text-yellow-400;
+        @apply text-pink-700 dark:text-yellow-400;
       }
     }
   }
