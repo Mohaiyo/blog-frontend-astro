@@ -1,9 +1,10 @@
 ---
 import Layout from '@layouts/Layout.astro'
-import SideBar from '@components/About/SideBar.vue'
+import AboutMain from '@components/About/Main.vue'
 ---
 
 <Layout title="About me">
-  <SideBar client:only="vue" />
+  <AboutMain client:only="vue" />
 </Layout>
+
 

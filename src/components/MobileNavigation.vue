@@ -42,7 +42,7 @@
     position: fixed;
     right: 0;
     top: 0;
-    z-index: 2000;
+    z-index: 9999;
     padding-top: 20px;
     background: #fff;
     height: calc(100vh);

@@ -3,7 +3,7 @@ import { categories, type CategoryItem } from "@data/category";
 const categoriesWithHomePage: (CategoryItem | { title: '首页' ,slug: string; description?: string })[] = [{ title: '首页', slug: '', description: 'Home page'}, ...categories]
 ---
 
-<div class="nav-links hidden lg:flex">
+<div class="nav-links hidden xl:flex">
   {
     categoriesWithHomePage.map(item => <a href={'/' + item.slug}>{item.title}</a>)
   }
