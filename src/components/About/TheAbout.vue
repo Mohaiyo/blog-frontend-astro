@@ -28,12 +28,7 @@
       <ul class="service-list">
         <li class="service-item">
           <div class="service-icon-box">
-            <img
-              src="../../assets/icon-design.svg
-        "
-              alt="design icon"
-              width="40"
-            />
+            <img :src="designIcon.src" alt="design icon" width="40" />
           </div>
 
           <div class="service-content-box">
@@ -45,7 +40,7 @@
 
         <li class="service-item">
           <div class="service-icon-box">
-            <img src="../../assets/icon-dev.svg" alt="Web development icon" width="40" />
+            <img :src="devIcon.src" alt="Web development icon" width="40" />
           </div>
 
           <div class="service-content-box">
@@ -57,7 +52,7 @@
 
         <li class="service-item">
           <div class="service-icon-box">
-            <img src="../../assets/icon-app.svg" alt="mobile app icon" width="40" />
+            <img :src="appIcon.src" alt="mobile app icon" width="40" />
           </div>
 
           <div class="service-content-box">
@@ -69,7 +64,7 @@
 
         <li class="service-item">
           <div class="service-icon-box">
-            <img src="../../assets/icon-photo.svg" alt="camera icon" width="40" />
+            <img :src="photoIcon.src" alt="camera icon" width="40" />
           </div>
 
           <div class="service-content-box">
@@ -91,6 +86,11 @@
       required: true
     }
   })
+
+  import designIcon from '@assets/icon-design.svg'
+  import devIcon from '@assets/icon-dev.svg'
+  import appIcon from '@assets/icon-app.svg'
+  import photoIcon from '@assets/icon-photo.svg'
 </script>
 
 <style scoped lang="scss">
@@ -103,7 +103,7 @@
     }
   }
   article {
-    @apply hidden rounded-[20px] border bg-white p-4  shadow-md transition-all dark:border-neutral-600 dark:bg-[#1e1e1f] sm:w-[520px] sm:p-[30px] sm:mx-auto md:w-[700px] lg:w-[800px] xl:w-auto xl:min-h-full;
+    @apply hidden rounded-[20px] border bg-white p-4  shadow-md transition-all dark:border-neutral-600 dark:bg-[#1e1e1f] sm:mx-auto sm:w-[520px] sm:p-[30px] md:w-[700px] lg:w-[800px] xl:min-h-full xl:w-auto;
   }
   article.active {
     @apply block;
@@ -128,7 +128,7 @@
     @apply relative pb-2;
   }
   .about .article-title {
-    @apply mb-4 after:absolute after:bottom-0 after:left-0 after:h-1 after:w-8 after:rounded after:bg-gradient-to-r  after:from-yellow-300 after:to-yellow-500 after:content-[''] sm:font-semibold sm:mb-5 sm:after:h-[6px] md:pb-5;
+    @apply mb-4 after:absolute after:bottom-0 after:left-0 after:h-1 after:w-8 after:rounded after:bg-gradient-to-r  after:from-yellow-300 after:to-yellow-500 after:content-[''] sm:mb-5 sm:font-semibold sm:after:h-[6px] md:pb-5;
   }
   .about-text {
     @apply font-normal text-stone-800 dark:text-gray-200 sm:mb-10;
@@ -146,7 +146,7 @@
     @apply grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-x-6 md:gap-y-5;
   }
   .service-item {
-    @apply relative z-[1] rounded-2xl bg-gradient-to-br from-amber-500 via-amber-400 dark:from-stone-600 dark:via-stone-800 via-50% to-stone-100 p-5 shadow-xl before:absolute before:inset-[1px] before:-z-[1] before:rounded-2xl before:bg-gradient-to-br before:from-amber-50 before:to-white  before:content-[''] dark:before:from-stone-800 dark:before:to-stone-800;
+    @apply relative z-[1] rounded-2xl bg-gradient-to-br from-amber-500 via-amber-400 via-50% to-stone-100 p-5 shadow-xl before:absolute before:inset-[1px] before:-z-[1] before:rounded-2xl before:bg-gradient-to-br before:from-amber-50 before:to-white before:content-[''] dark:from-stone-600  dark:via-stone-800 dark:before:from-stone-800 dark:before:to-stone-800;
     .service-icon-box {
       @apply mb-[10px] flex justify-center;
     }
