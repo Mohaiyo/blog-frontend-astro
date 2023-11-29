@@ -4,8 +4,8 @@ pubDate: 2018-02-23
 description: 'Vue2系列-起步'
 author: 'Wayne.Liang'
 image:
-  url: ''
-  alt: ''
+  url: './vue2-template-syntax-cover.png'
+  alt: 'template-syntax'
 category: '读书笔记'
 tags: ['Vue.js', 'Vue2']
 ---

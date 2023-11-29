@@ -4,8 +4,8 @@ pubDate: 2022-09-01
 description: 'React速成课。'
 author: 'Wayne.Liang'
 image:
-  url: ''
-  alt: ''
+  url: './vue2-template-syntax-cover.png'
+  alt: 'template-syntax'
 category: '前端开发'
 tags: ['React']
 ---

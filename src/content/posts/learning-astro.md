@@ -5,8 +5,8 @@ category: '读书笔记'
 description: '这是我 Astro 博客的第一篇文章。'
 author: Astro Learner
 image:
-  url: ''
-  alt: ''
+  url: './vue2-template-syntax-cover.png'
+  alt: 'template-syntax'
 tags: ['astro', 'blogging', 'learning in public']
 ---
 

@@ -4,18 +4,21 @@ import { z, defineCollection } from 'astro:content'
 // 为每一个集合定义一个 `type` 和 `schema`
 const postsCollection = defineCollection({
   type: 'content',
-  schema: z.object({
-    title: z.string(),
-    pubDate: z.date().default(new Date()),
-    description: z.string(),
-    author: z.string().default('Wayne.Liang'),
-    category: z.enum(['前端开发', '后端开发', '数据库与存储', '云计算与部署', '技术工具与实践', '读书笔记']),
-    image: z.object({
-      url: z.string(),
-      alt: z.string()
-    }),
-    tags: z.array(z.string())
-  })
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      pubDate: z.date().default(new Date()),
+      description: z.string(),
+      author: z.string().default('Wayne.Liang'),
+      category: z.enum(['前端开发', '后端开发', '数据库与存储', '云计算与部署', '技术工具与实践', '读书笔记']),
+      image: z.object({
+        url: image().refine((img) => img.width >= 768, {
+          message: 'Cover image must be at least 768 pixels wide!'
+        }),
+        alt: z.string()
+      }),
+      tags: z.array(z.string())
+    })
 })
 
 // 导出一个单独的 `collections` 对象来注册你的集合

@@ -4,8 +4,8 @@ pubDate: 2018-02-23
 description: '在前端开发中，操作元素的 class 列表和内联样式是数据绑定最常见的需求。了解Class 与 Style 绑定如何快速实现样式的更新或者切换。'
 author: 'Wayne.Liang'
 image:
-  url: ''
-  alt: ''
+  url: './vue2-template-syntax-cover.png'
+  alt: 'template-syntax'
 category: '前端开发'
 tags: ['Vue.js', 'Vue2']
 ---

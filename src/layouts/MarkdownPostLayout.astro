@@ -17,7 +17,7 @@ interface Props {
     tags: string[]
     minutesRead: number
     image?: {
-      url: string
+      url: ImageMetadata
       alt: string
     }
   }
@@ -59,7 +59,7 @@ const cateogryItem = categories.find((item) => item.title === frontmatter.catego
     </div>
 
     <div class="post__cover not-prose">
-      <img src={frontmatter.image?.url} alt={frontmatter.image?.alt} />
+      <img src={frontmatter.image?.url.src} alt={frontmatter.image?.alt} />
     </div>
 
     <div class="post__tags not-prose">
