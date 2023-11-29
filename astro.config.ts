@@ -7,7 +7,7 @@ import fs from 'node:fs'
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://mohaiyo.netlify.app',
+  site: 'https://tech-connection.netlify.app/',
   image: {
     service: squooshImageService()
   },

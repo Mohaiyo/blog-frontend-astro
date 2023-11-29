@@ -7,7 +7,7 @@ image:
   cover: '../assets/front-end-dev/astro-islands-arc-cover.png'
   alt: 'islands architecture'
 category: '前端开发'
-tags: ['Vue.js', 'Vue2']
+tags: ['Astro']
 ---
 
 ## 什么是群岛

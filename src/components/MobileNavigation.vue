@@ -1,7 +1,7 @@
 <template>
   <div class="site-mobile-nav">
     <div class="site-mobile-nav__logo">
-      <a class="site-mobile-nav__site-logo">TechConnect</a>
+      <a class="site-mobile-nav__site-logo" href="/">TechConnect</a>
       <p class="site-mobile-nav__site-slogan">创造，连接，改变世界</p>
     </div>
     <div class="site-mobile-nav__links">
