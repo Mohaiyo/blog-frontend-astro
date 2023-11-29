@@ -1,11 +1,11 @@
 ---
 title: 'Vue2简明指南之--Class和Style绑定'
-pubDate: 2018-02-23
+pubDate: 2018-02-25
 description: '在前端开发中，操作元素的 class 列表和内联样式是数据绑定最常见的需求。了解Class 与 Style 绑定如何快速实现样式的更新或者切换。'
 author: 'Wayne.Liang'
 image:
-  url: './vue2-template-syntax-cover.png'
-  alt: 'template-syntax'
+  cover: '../assets/front-end-dev/style-and-class-binding.png'
+  alt: 'class and sting bingding'
 category: '前端开发'
 tags: ['Vue.js', 'Vue2']
 ---

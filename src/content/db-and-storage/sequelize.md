@@ -4,7 +4,7 @@ pubDate: 2021-07-01
 description: '数据库与存储'
 author: Wayne.Liang
 image:
-  url: './vue2-template-syntax-cover.png'
+  cover: '../assets/front-end-dev/style-and-class-binding.png'
   alt: 'template-syntax'
 category: '数据库与存储'
 tags: ['Sequelize', 'Sequelize cli']

@@ -17,7 +17,7 @@ interface Props {
     tags: string[]
     minutesRead: number
     image?: {
-      url: ImageMetadata
+      cover: ImageMetadata
       alt: string
     }
   }
@@ -58,9 +58,9 @@ const cateogryItem = categories.find((item) => item.title === frontmatter.catego
       </div>
     </div>
 
-    <div class="post__cover not-prose">
-      <img src={frontmatter.image?.url.src} alt={frontmatter.image?.alt} />
-    </div>
+    <!-- <div class="post__cover not-prose">
+      <img src={frontmatter.image?.cover.src} alt={frontmatter.image?.alt} />
+    </div> -->
 
     <div class="post__tags not-prose">
       {
@@ -81,7 +81,7 @@ const cateogryItem = categories.find((item) => item.title === frontmatter.catego
       @apply dark:text-white mb-3 mt-2 text-center text-3xl font-semibold tracking-tight lg:text-4xl lg:leading-snug;
     }
     &__descr {
-      @apply text-center text-gray-400 dark:text-white;
+      @apply indent-8 font-light text-sm xl:text-[16px] leading-relaxed text-sky-400 dark:text-white;
     }
     &__meta-info {
       @apply mb-2 flex items-center gap-1 text-sm text-gray-400 dark:text-white;

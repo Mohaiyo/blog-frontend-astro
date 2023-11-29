@@ -3,7 +3,7 @@ title: 'makefile-cli'
 pubDate: 2022-10-01
 description: 'makefile'
 image:
-  url: './vue2-template-syntax-cover.png'
+  cover: '../assets/front-end-dev/style-and-class-binding.png'
   alt: 'template-syntax'
 category: '技术工具与实践'
 tags: ['makefile']

@@ -12,7 +12,7 @@ const postsCollection = defineCollection({
       author: z.string().default('Wayne.Liang'),
       category: z.enum(['前端开发', '后端开发', '数据库与存储', '云计算与部署', '技术工具与实践', '读书笔记']),
       image: z.object({
-        url: image().refine((img) => img.width >= 768, {
+        cover: image().refine((img) => img.width >= 768, {
           message: 'Cover image must be at least 768 pixels wide!'
         }),
         alt: z.string()

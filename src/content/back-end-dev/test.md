@@ -4,7 +4,7 @@ pubDate: 2022-07-02
 description: '后端开发技术文章。'
 author: Wayne.Liang
 image:
-  url: './vue2-template-syntax-cover.png'
+  cover: '../assets/front-end-dev/style-and-class-binding.png'
   alt: 'template-syntax'
 category: '后端开发'
 tags: ['Rust']

@@ -19,7 +19,7 @@ interface Props {
         author: string;
         category: string;
         image?: {
-            url?: string
+            cover?: ImageMetadata
             alt?: string
         };
         tags?: string[];
@@ -39,12 +39,12 @@ const category = categories.find((item) => item.title === post.data.category) as
   >
     <a href={`/${post.collection}/` + post.slug}>
       {
-        post.data.image?.url ? (
+        post.data.image?.cover ? (
           <Picture
-            src={post.data.image.url}
+            src={post.data.image.cover}
             widths={[200, 400, 800]}
             sizes="(max-width: 640px) 90vw, 480px"
-            alt="Thumbnail"
+            alt={post.data.image.alt || "Thumbnail"}
             width={200}
             height={200}
             loading={preloadImage ? 'eager' : 'lazy'}
@@ -65,7 +65,7 @@ const category = categories.find((item) => item.title === post.data.category) as
   <h2 class="text-brand-primary dark:text-white mt-2 text-lg font-semibold tracking-normal">
     <a href={`/${post.collection}/` + post.slug}>
       <span
-        class="from-green-200 to-green-100 dark:from-purple-800 dark:to-purple-900 bg-gradient-to-r bg-[length:0px_10px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 hover:bg-[length:100%_3px] group-hover:bg-[length:100%_10px]"
+        class="from-sky-300 to-sky-500 dark:from-blue-300 dark:to-blue-500 bg-gradient-to-r bg-[length:0px_10px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 hover:bg-[length:100%_3px] group-hover:bg-[length:100%_10px]"
       >
         {post.data.title}
       </span>
