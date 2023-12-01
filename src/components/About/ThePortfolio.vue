@@ -24,7 +24,12 @@
       </ul>
 
       <div class="filter-select-box">
-        <button class="filter-select" data-select>
+        <button
+          class="filter-select"
+          :class="{ active: showSelectList }"
+          data-select
+          @click="showSelectList = !showSelectList"
+        >
           <div class="select-value" data-selecct-value>Select category</div>
 
           <div class="select-icon">
@@ -32,7 +37,7 @@
           </div>
         </button>
 
-        <ul class="select-list">
+        <ul class="select-list" @click.capture="showSelectList = false">
           <li class="select-item">
             <button data-select-item>All</button>
           </li>
@@ -201,6 +206,8 @@
 </template>
 
 <script setup lang="ts">
+  import { ref } from 'vue'
+
   defineProps({
     active: {
       type: Boolean,
@@ -208,15 +215,25 @@
       required: true
     }
   })
+
+  const showSelectList = ref(false)
 </script>
 
 <style scoped lang="scss">
-@keyframes fade {
+  @keyframes fade {
     0% {
       opacity: 0;
     }
     100% {
       opacity: 1;
+    }
+  }
+  @keyframes scaleUp {
+    0% {
+      transform: scale(0.5);
+    }
+    100% {
+      transform: scale(1);
     }
   }
   article {
@@ -249,6 +266,73 @@
     @apply relative pb-2 sm:pb-4 sm:font-bold md:pb-5;
   }
   .portfolio .article-title {
-    @apply mb-4 after:absolute after:bottom-0 after:left-0 after:h-1 after:w-8 after:rounded after:bg-gradient-to-r  after:from-yellow-300 after:to-yellow-500 after:content-[''] sm:mb-5 md:mb-7 sm:font-semibold sm:after:h-[6px] md:pb-5;
+    @apply mb-4 after:absolute after:bottom-0 after:left-0 after:h-1 after:w-8 after:rounded after:bg-gradient-to-r  after:from-yellow-300 after:to-yellow-500 after:content-[''] sm:mb-5 sm:font-semibold sm:after:h-[6px] md:mb-7 md:pb-5;
+  }
+
+  .filter-list {
+    @apply invisible hidden md:flex md:justify-start md:items-center md:gap-6 md:pl-1 md:mb-7 md:visible;
+  }
+
+  .filter-item button.active {
+    @apply text-amber-300;
+  }
+  .filter-select-box {
+    @apply relative mb-6 md:hidden;
+  }
+
+  .filter-select {
+    @apply flex  w-full items-center justify-between rounded-xl border px-4 py-3 text-sm font-normal dark:border-stone-600 dark:bg-[#1e1e1e] dark:text-gray-300;
+  }
+  .select-icon {
+    @apply max-h-[14px] leading-none;
+  }
+
+  .select-list {
+    @apply pointer-events-none invisible absolute top-[53px] z-10 w-full rounded-xl border bg-amber-50 p-[6px] opacity-0 transition-all dark:border-stone-600 dark:bg-[#1e1e1e];
+  }
+  .filter-select.active + .select-list {
+    @apply pointer-events-auto visible opacity-100;
+  }
+
+  .select-item button {
+    @apply w-full rounded-lg bg-amber-50 px-[10px] py-2 text-left text-sm font-normal capitalize text-pink-700 dark:bg-[#1e1e1e] dark:text-gray-300;
+  }
+  .project-list {
+    @apply mb-3 grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-2;
+  }
+  .project-item {
+    @apply hidden;
+  }
+  .project-item.active {
+    @apply block;
+    animation: scaleUp 0.3s ease forwards;
+  }
+  .project-item > a {
+    @apply w-full;
+  }
+  .project-img {
+    @apply relative z-10 mb-4 h-[200px] w-full overflow-hidden rounded-2xl transition-all before:absolute before:left-0 before:top-0 before:h-full before:w-full before:bg-transparent before:content-[''] md:rounded-2xl md:h-auto;
+  }
+  .project-item-icon-box {
+    @apply absolute left-1/2 top-1/2 z-10 max-h-[60px] -translate-x-1/2 -translate-y-1/2 scale-75 rounded-xl bg-[#383838] p-5 text-xl leading-none text-amber-300 opacity-0 transition-all;
+  }
+  .project-item > a:hover .project-item-icon-box {
+    @apply scale-100 opacity-100;
+  }
+  .project-item-icon-box ion-icon {
+    --ionicon-stroke-width: 50px;
+  }
+
+  .project-item > a:hover img {
+    @apply scale-110;
+  }
+  .project-img img {
+    @apply h-full w-full object-cover transition-transform;
+  }
+  .project-title {
+    @apply dark:text-sm capitalize leading-snug dark:text-white;
+  }
+  .project-category {
+    @apply dark:text-gray-200 text-stone-600 text-xs;
   }
 </style>

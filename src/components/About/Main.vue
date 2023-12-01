@@ -25,7 +25,7 @@
   import TheAbout from '@components/About/TheAbout.vue'
   import TheResume from '@components/About/TheResume.vue'
   import ThePortfolio from '@components/About/ThePortfolio.vue'
-  const currentActive = ref<NavBarType>('resume')
+  const currentActive = ref<NavBarType>('portfolio')
 
   function updateNavHandle(val: NavBarType) {
     currentActive.value = val
