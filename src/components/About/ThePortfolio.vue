@@ -106,16 +106,12 @@
       value: 'all'
     },
     {
-      label: 'Web设计',
-      value: 'webDesigin'
-    },
-    {
-      label: '应用程序',
-      value: 'applications'
-    },
-    {
       label: 'Web前端开发',
       value: 'webDevelopment'
+    },
+    {
+      label: 'Web设计',
+      value: 'webDesigin'
     }
   ]
   const selectFormatter = (val: SelectLabelValue) => {
@@ -136,7 +132,7 @@
       title: '个人博客',
       cate: 'webDevelopment',
       url: 'https://tech-connection.netlify.app/'
-    },
+    }
     // {
     //   cover: pj2,
     //   title: 'Orizon',
@@ -295,7 +291,7 @@
     @apply h-full w-full object-cover transition-transform;
   }
   .project-title {
-    @apply capitalize leading-snug dark:text-sm dark:text-white mb-1;
+    @apply mb-1 capitalize leading-snug dark:text-sm dark:text-white;
   }
   .project-category {
     @apply text-xs text-stone-600 dark:text-gray-200;

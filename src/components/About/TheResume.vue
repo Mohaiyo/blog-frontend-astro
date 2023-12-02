@@ -379,7 +379,7 @@
         @apply mb-2 text-[14px] leading-tight lg:text-[16px] xl:text-lg;
       }
       &::after {
-        @apply absolute -left-[33px] top-[10px] h-[6px] w-[6px] rounded-full bg-gradient-to-t from-yellow-400 from-[72%] to-yellow-500 to-[68%] content-[''] sm:-left-[43px] sm:h-2 sm:w-2;
+        @apply absolute -left-[33px] top-[5px] xl:top-[10px] h-[6px] w-[6px] rounded-full bg-gradient-to-t from-yellow-400 from-[72%] to-yellow-500 to-[68%] content-[''] sm:-left-[43px] sm:h-2 sm:w-2;
         box-shadow: 0 0 0 4px #383838;
       }
     }
