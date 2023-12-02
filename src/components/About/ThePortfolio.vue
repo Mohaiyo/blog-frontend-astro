@@ -6,20 +6,18 @@
 
     <section class="projects">
       <ul class="filter-list">
-        <li class="filter-item">
-          <button class="active" data-filter-btn>All</button>
-        </li>
-
-        <li class="filter-item">
-          <button data-filter-btn>Web design</button>
-        </li>
-
-        <li class="filter-item">
-          <button data-filter-btn>Applications</button>
-        </li>
-
-        <li class="filter-item">
-          <button data-filter-btn>Web development</button>
+        <li
+          v-for="selectItem of selectOptions"
+          :key="selectItem.value"
+          class="filter-item"
+          @click="selectValue = selectItem.value"
+        >
+          <button
+            :class="{
+              active: selectItem.value === selectValue
+            }"
+            >{{ selectItem.label }}</button
+          >
         </li>
       </ul>
 
@@ -30,7 +28,7 @@
           data-select
           @click="showSelectList = !showSelectList"
         >
-          <div class="select-value" data-selecct-value>Select category</div>
+          <div class="select-value">{{ selectValue === 'all' ? '选择分类' : selectFormatter(selectValue) }}</div>
 
           <div class="select-icon">
             <ion-icon name="chevron-down"></ion-icon>
@@ -38,166 +36,39 @@
         </button>
 
         <ul class="select-list" @click.capture="showSelectList = false">
-          <li class="select-item">
-            <button data-select-item>All</button>
-          </li>
-
-          <li class="select-item">
-            <button data-select-item>Web design</button>
-          </li>
-
-          <li class="select-item">
-            <button data-select-item>Applications</button>
-          </li>
-
-          <li class="select-item">
-            <button data-select-item>Web development</button>
+          <li
+            v-for="selectItem of selectOptions"
+            :key="selectItem.value"
+            class="select-item"
+            :class="{ active: selectValue === selectItem.value }"
+            @click="selectValue = selectItem.value"
+          >
+            <button>{{ selectItem.label }}</button>
           </li>
         </ul>
       </div>
 
       <ul class="project-list">
-        <li class="project-item active" data-filter-item data-category="web development">
-          <a href="#">
+        <li
+          v-for="pItem of portfolioList"
+          :key="pItem.title"
+          class="project-item"
+          :class="{
+            active: selectValue !== 'all' ? pItem.cate === selectValue : true
+          }"
+        >
+          <a :href="pItem.url" target="_blank">
             <figure class="project-img">
               <div class="project-item-icon-box">
                 <ion-icon name="eye-outline"></ion-icon>
               </div>
 
-              <img src="../../assets/project-1.jpg" alt="finance" loading="lazy" />
+              <img :src="pItem.cover.src" :alt="pItem.title" loading="lazy" />
             </figure>
 
-            <h3 class="project-title">Finance</h3>
+            <h3 class="project-title">{{ pItem.title }}</h3>
 
-            <p class="project-category">Web development</p>
-          </a>
-        </li>
-
-        <li class="project-item active" data-filter-item data-category="web development">
-          <a href="#">
-            <figure class="project-img">
-              <div class="project-item-icon-box">
-                <ion-icon name="eye-outline"></ion-icon>
-              </div>
-
-              <img src="../../assets/project-2.png" alt="orizon" loading="lazy" />
-            </figure>
-
-            <h3 class="project-title">Orizon</h3>
-
-            <p class="project-category">Web development</p>
-          </a>
-        </li>
-
-        <li class="project-item active" data-filter-item data-category="web design">
-          <a href="#">
-            <figure class="project-img">
-              <div class="project-item-icon-box">
-                <ion-icon name="eye-outline"></ion-icon>
-              </div>
-
-              <img src="../../assets/project-3.jpg" alt="fundo" loading="lazy" />
-            </figure>
-
-            <h3 class="project-title">Fundo</h3>
-
-            <p class="project-category">Web design</p>
-          </a>
-        </li>
-
-        <li class="project-item active" data-filter-item data-category="applications">
-          <a href="#">
-            <figure class="project-img">
-              <div class="project-item-icon-box">
-                <ion-icon name="eye-outline"></ion-icon>
-              </div>
-
-              <img src="../../assets/project-4.png" alt="brawlhalla" loading="lazy" />
-            </figure>
-
-            <h3 class="project-title">Brawlhalla</h3>
-
-            <p class="project-category">Applications</p>
-          </a>
-        </li>
-
-        <li class="project-item active" data-filter-item data-category="web design">
-          <a href="#">
-            <figure class="project-img">
-              <div class="project-item-icon-box">
-                <ion-icon name="eye-outline"></ion-icon>
-              </div>
-
-              <img src="../../assets/project-5.png" alt="dsm." loading="lazy" />
-            </figure>
-
-            <h3 class="project-title">DSM.</h3>
-
-            <p class="project-category">Web design</p>
-          </a>
-        </li>
-
-        <li class="project-item active" data-filter-item data-category="web design">
-          <a href="#">
-            <figure class="project-img">
-              <div class="project-item-icon-box">
-                <ion-icon name="eye-outline"></ion-icon>
-              </div>
-
-              <img src="../../assets/project-6.png" alt="metaspark" loading="lazy" />
-            </figure>
-
-            <h3 class="project-title">MetaSpark</h3>
-
-            <p class="project-category">Web design</p>
-          </a>
-        </li>
-
-        <li class="project-item active" data-filter-item data-category="web development">
-          <a href="#">
-            <figure class="project-img">
-              <div class="project-item-icon-box">
-                <ion-icon name="eye-outline"></ion-icon>
-              </div>
-
-              <img src="../../assets/project-7.png" alt="summary" loading="lazy" />
-            </figure>
-
-            <h3 class="project-title">Summary</h3>
-
-            <p class="project-category">Web development</p>
-          </a>
-        </li>
-
-        <li class="project-item active" data-filter-item data-category="applications">
-          <a href="#">
-            <figure class="project-img">
-              <div class="project-item-icon-box">
-                <ion-icon name="eye-outline"></ion-icon>
-              </div>
-
-              <img src="../../assets/project-8.jpg" alt="task manager" loading="lazy" />
-            </figure>
-
-            <h3 class="project-title">Task Manager</h3>
-
-            <p class="project-category">Applications</p>
-          </a>
-        </li>
-
-        <li class="project-item active" data-filter-item data-category="web development">
-          <a href="#">
-            <figure class="project-img">
-              <div class="project-item-icon-box">
-                <ion-icon name="eye-outline"></ion-icon>
-              </div>
-
-              <img src="../../assets/project-9.png" alt="arrival" loading="lazy" />
-            </figure>
-
-            <h3 class="project-title">Arrival</h3>
-
-            <p class="project-category">Web development</p>
+            <p class="project-category">{{ selectFormatter(pItem.cate) }}</p>
           </a>
         </li>
       </ul>
@@ -207,7 +78,21 @@
 
 <script setup lang="ts">
   import { ref } from 'vue'
+  import pj1 from '@assets/project-1.png'
+  // import pj2 from '@assets/project-2.png'
+  // import pj3 from '@assets/project-3.jpg'
+  // import pj4 from '@assets/project-4.png'
+  // import pj5 from '@assets/project-5.png'
+  // import pj6 from '@assets/project-6.png'
+  // import pj7 from '@assets/project-7.png'
+  // import pj8 from '@assets/project-8.jpg'
+  // import pj9 from '@assets/project-9.png'
 
+  type SelectLabelValue = 'all' | 'webDesigin' | 'applications' | 'webDevelopment'
+  type SelectDataItem = {
+    label: string
+    value: SelectLabelValue
+  }
   defineProps({
     active: {
       type: Boolean,
@@ -215,8 +100,84 @@
       required: true
     }
   })
-
+  const selectOptions: SelectDataItem[] = [
+    {
+      label: '全部',
+      value: 'all'
+    },
+    {
+      label: 'Web设计',
+      value: 'webDesigin'
+    },
+    {
+      label: '应用程序',
+      value: 'applications'
+    },
+    {
+      label: 'Web前端开发',
+      value: 'webDevelopment'
+    }
+  ]
+  const selectFormatter = (val: SelectLabelValue) => {
+    const matchItem = selectOptions.find((item) => item.value === val)
+    return matchItem?.label
+  }
   const showSelectList = ref(false)
+  const selectValue = ref<SelectLabelValue>('all')
+
+  const portfolioList: {
+    cover: ImageMetadata
+    title: string
+    cate: SelectLabelValue
+    url: string
+  }[] = [
+    {
+      cover: pj1,
+      title: '个人博客',
+      cate: 'webDevelopment',
+      url: 'https://tech-connection.netlify.app/'
+    },
+    // {
+    //   cover: pj2,
+    //   title: 'Orizon',
+    //   cate: 'webDevelopment'
+    // },
+    // {
+    //   cover: pj3,
+    //   title: 'Fundo',
+    //   cate: 'webDesigin'
+    // },
+    // {
+    //   cover: pj4,
+    //   title: 'Brawlhalla',
+    //   cate: 'applications'
+    // },
+    // {
+    //   cover: pj5,
+    //   title: 'DSM.',
+    //   cate: 'webDesigin'
+    // },
+    // {
+    //   cover: pj6,
+    //   title: 'MetaSpark',
+    //   cate: 'webDesigin'
+    // },
+    // {
+    //   cover: pj7,
+    //   title: 'Summary',
+    //   cate: 'webDevelopment'
+    // },
+    // {
+    //   cover: pj8,
+    //   title: 'Task Manager',
+    //   cate: 'applications'
+    // },
+    // {
+    //   cover: pj9,
+    //   title: 'Arrival',
+    //   cate: 'webDevelopment'
+    // }
+  ]
 </script>
 
 <style scoped lang="scss">
@@ -270,7 +231,7 @@
   }
 
   .filter-list {
-    @apply invisible hidden md:flex md:justify-start md:items-center md:gap-6 md:pl-1 md:mb-7 md:visible;
+    @apply invisible hidden md:visible md:mb-7 md:flex md:items-center md:justify-start md:gap-6 md:pl-1;
   }
 
   .filter-item button.active {
@@ -297,6 +258,10 @@
   .select-item button {
     @apply w-full rounded-lg bg-amber-50 px-[10px] py-2 text-left text-sm font-normal capitalize text-pink-700 dark:bg-[#1e1e1e] dark:text-gray-300;
   }
+
+  .select-list .select-item.active button {
+    @apply text-amber-300;
+  }
   .project-list {
     @apply mb-3 grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-2;
   }
@@ -311,7 +276,7 @@
     @apply w-full;
   }
   .project-img {
-    @apply relative z-10 mb-4 h-[200px] w-full overflow-hidden rounded-2xl transition-all before:absolute before:left-0 before:top-0 before:h-full before:w-full before:bg-transparent before:content-[''] md:rounded-2xl md:h-auto;
+    @apply relative z-10 mb-4 h-[200px] w-full overflow-hidden rounded-2xl transition-all before:absolute before:left-0 before:top-0 before:h-full before:w-full before:bg-transparent before:content-[''] md:h-auto md:rounded-2xl;
   }
   .project-item-icon-box {
     @apply absolute left-1/2 top-1/2 z-10 max-h-[60px] -translate-x-1/2 -translate-y-1/2 scale-75 rounded-xl bg-[#383838] p-5 text-xl leading-none text-amber-300 opacity-0 transition-all;
@@ -330,9 +295,9 @@
     @apply h-full w-full object-cover transition-transform;
   }
   .project-title {
-    @apply dark:text-sm capitalize leading-snug dark:text-white;
+    @apply capitalize leading-snug dark:text-sm dark:text-white mb-1;
   }
   .project-category {
-    @apply dark:text-gray-200 text-stone-600 text-xs;
+    @apply text-xs text-stone-600 dark:text-gray-200;
   }
 </style>

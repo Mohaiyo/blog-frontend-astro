@@ -4,7 +4,7 @@ pubDate: 2018-02-23
 description: 'Vue2系列-起步'
 author: 'Wayne.Liang'
 image:
-  cover: '../assets/front-end-dev/style-and-class-binding.png'
+  cover: '../assets/posts/vue2-crash-course.png'
   alt: 'vue2 crash course'
 category: '读书笔记'
 tags: ['Vue.js', 'Vue2']

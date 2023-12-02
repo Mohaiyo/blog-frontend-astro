@@ -6,16 +6,23 @@
 
     <section class="about-text">
       <p>
-        I'm Creative Director and UI/UX Designer from Sydney, Australia, working in web development and print media. I
-        enjoy turning complex problems into simple, beautiful and intuitive designs.
+        专注于构建现代化、高性能的Web应用程序。我的技能涵盖了Vue.js、React、JavaScript、TypeScript、HTML、CSS、Tailwind
+        CSS以及Vite等前端技术。
       </p>
 
       <p>
-        My job is to build your website so that it is functional and user-friendly but at the same time attractive.
-        Moreover, I add personal touch to your product and make sure that is eye-catching and easy to use. My aim is to
-        bring across your message and identity in the most creative way. I created web design for many famous brand
-        companies.
+        职业生涯中，我成功地参与并领导了多个复杂的前端项目，为客户提供了高质量、用户友好的解决方案。我熟练运用Vue.js框架，能够构建可维护、可扩展的单页面应用程序（SPA）。我的JavaScript和TypeScript编码能力使我能够处理各种前端任务，并确保代码的可读性和可维护性。
       </p>
+
+      <p>
+        项目上，我善于与设计团队合作，将设计概念转化为现实，并通过优化性能和用户体验来不断改进应用。我的工作经验中涵盖了响应式设计、跨浏览器兼容性、以及利用现代化工具和框架提高开发效率的方面。
+      </p>
+      <p>
+        熟悉HTML和CSS，善于使用Tailwind
+        CSS进行快速样式开发，提高了开发速度同时保持代码的整洁性。我还熟悉Vite等工具，能够借助它们的强大功能进行项目的快速开发和部署。
+      </p>
+
+      <p>总的来说，我对前端技术有着深厚的热情，持续关注行业的发展动向，并不断扩充自己的技能栈。</p>
     </section>
 
     <!--
@@ -23,54 +30,30 @@
 -->
 
     <section class="service">
-      <h3 class="h3 service-title">What i'm doing</h3>
+      <h3 class="h3 service-title">我在做什么</h3>
 
       <ul class="service-list">
-        <li class="service-item">
-          <div class="service-icon-box">
-            <img :src="designIcon.src" alt="design icon" width="40" />
-          </div>
-
-          <div class="service-content-box">
-            <h4 class="h4 service-item-title">Web design</h4>
-
-            <p class="service-item-text"> The most modern and high-quality design made at a professional level. </p>
-          </div>
-        </li>
-
         <li class="service-item">
           <div class="service-icon-box">
             <img :src="devIcon.src" alt="Web development icon" width="40" />
           </div>
 
           <div class="service-content-box">
-            <h4 class="h4 service-item-title">Web development</h4>
+            <h4 class="h4 service-item-title">Web前端开发工程师</h4>
 
-            <p class="service-item-text"> High-quality development of sites at the professional level. </p>
+            <p class="service-item-text"> 专业级的网站Web前端开发能力。 </p>
           </div>
         </li>
 
         <li class="service-item">
           <div class="service-icon-box">
-            <img :src="appIcon.src" alt="mobile app icon" width="40" />
+            <img :src="designIcon.src" alt="design icon" width="40" />
           </div>
 
           <div class="service-content-box">
-            <h4 class="h4 service-item-title">Mobile apps</h4>
+            <h4 class="h4 service-item-title">Web设计</h4>
 
-            <p class="service-item-text"> Professional development of applications for iOS and Android. </p>
-          </div>
-        </li>
-
-        <li class="service-item">
-          <div class="service-icon-box">
-            <img :src="photoIcon.src" alt="camera icon" width="40" />
-          </div>
-
-          <div class="service-content-box">
-            <h4 class="h4 service-item-title">Photography</h4>
-
-            <p class="service-item-text"> I make high-quality photos of any category at a professional level. </p>
+            <p class="service-item-text"> 最前沿的高质量的专业级的设计能力。 </p>
           </div>
         </li>
       </ul>
@@ -89,8 +72,6 @@
 
   import designIcon from '@assets/icon-design.svg'
   import devIcon from '@assets/icon-dev.svg'
-  import appIcon from '@assets/icon-app.svg'
-  import photoIcon from '@assets/icon-photo.svg'
 </script>
 
 <style scoped lang="scss">

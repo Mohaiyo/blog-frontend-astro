@@ -1,5 +1,5 @@
 <template>
-  <div class="about-container xl:max-w-7xl xl:flex xl:justify-center xl:items-stretch xl:gap-6">
+  <div class="about-container xl:flex xl:max-w-7xl xl:items-stretch xl:justify-center xl:gap-6">
     <SideBar />
     <div class="main-content">
       <!-- nav bar start -->
@@ -25,7 +25,7 @@
   import TheAbout from '@components/About/TheAbout.vue'
   import TheResume from '@components/About/TheResume.vue'
   import ThePortfolio from '@components/About/ThePortfolio.vue'
-  const currentActive = ref<NavBarType>('portfolio')
+  const currentActive = ref<NavBarType>('about')
 
   function updateNavHandle(val: NavBarType) {
     currentActive.value = val
@@ -36,5 +36,4 @@
   .main-content {
     @apply m-auto lg:relative lg:w-max xl:m-0 xl:w-[70%] xl:min-w-[70%];
   }
-  
 </style>
