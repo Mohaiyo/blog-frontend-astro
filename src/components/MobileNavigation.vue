@@ -70,11 +70,19 @@
       position: absolute;
       top: 20px;
       right: 20px;
+      svg {
+        transform: scale(0.5);
+        transition: 0.3s 0.3s all cubic-bezier(0.18, 0.89, 0.32, 1.28);
+      }
+      
     }
   }
 
   .header-nav.expanded .site-mobile-nav {
     transform: translateX(0%);
+  }
+  .header-nav.expanded .site-mobile-nav__close-icon svg {
+    transform: scale(1);
   }
 </style>
 
