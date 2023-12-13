@@ -56,7 +56,7 @@
       @apply flex flex-wrap items-center justify-center px-[10px] py-0 sm:gap-5 lg:gap-[30px] lg:px-5;
     }
     .navbar-link {
-      @apply px-2 py-5 text-xs text-gray-400 transition-colors sm:text-[14px] md:text-[16px] lg:font-medium;
+      @apply px-2 py-5 text-xs text-gray-400 transition-colors sm:text-sm md:text-base lg:font-medium;
       &.active {
         @apply text-pink-700 dark:text-yellow-400;
       }

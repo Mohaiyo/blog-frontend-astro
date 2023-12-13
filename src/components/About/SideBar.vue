@@ -179,7 +179,7 @@
       @apply flex min-w-full items-center gap-4;
     }
     .icon-box {
-      @apply relative z-[1] flex h-[30px] w-[30px] items-center justify-center rounded-lg bg-gradient-to-br from-amber-300 via-transparent via-50% to-transparent text-[16px] text-yellow-500 before:absolute before:inset-[1px] before:z-[-1] before:rounded-lg before:bg-white before:content-[''] dark:from-stone-600 dark:via-transparent dark:to-transparent dark:before:bg-[#202022] sm:h-12 sm:w-12 sm:rounded-xl sm:text-lg sm:before:rounded-xl;
+      @apply relative z-[1] flex h-[30px] w-[30px] items-center justify-center rounded-lg bg-gradient-to-br from-amber-300 via-transparent via-50% to-transparent text-base text-yellow-500 before:absolute before:inset-[1px] before:z-[-1] before:rounded-lg before:bg-white before:content-[''] dark:from-stone-600 dark:via-transparent dark:to-transparent dark:before:bg-[#202022] sm:h-12 sm:w-12 sm:rounded-xl sm:text-lg sm:before:rounded-xl;
       box-shadow: -4px 8px 24px hsla(0, 0%, 0%, 0.25);
       ion-icon {
         @apply sm:text-2xl;

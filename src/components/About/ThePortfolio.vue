@@ -216,7 +216,7 @@
     @apply text-lg xl:text-xl;
   }
   .h5 {
-    @apply text-[14px] xl:text-[16px];
+    @apply text-sm xl:text-base;
   }
 
   .article-title {

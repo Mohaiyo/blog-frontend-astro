@@ -353,7 +353,7 @@
     @apply text-lg xl:text-xl;
   }
   .h5 {
-    @apply text-[14px] xl:text-[16px];
+    @apply text-sm xl:text-base;
   }
   .timeline {
     @apply mb-[30px];
@@ -362,21 +362,21 @@
     }
   }
   .icon-box {
-    @apply relative z-[1] flex h-[30px] w-[30px] items-center justify-center rounded-lg bg-gradient-to-br from-amber-300 via-transparent via-50% to-transparent text-[16px] text-yellow-500 before:absolute before:inset-[1px] before:z-[-1] before:rounded-lg before:bg-white before:content-[''] dark:from-stone-600 dark:via-transparent dark:to-transparent dark:before:bg-[#202022] sm:h-12 sm:w-12 sm:rounded-xl sm:text-lg sm:before:rounded-xl;
+    @apply relative z-[1] flex h-[30px] w-[30px] items-center justify-center rounded-lg bg-gradient-to-br from-amber-300 via-transparent via-50% to-transparent text-base text-yellow-500 before:absolute before:inset-[1px] before:z-[-1] before:rounded-lg before:bg-white before:content-[''] dark:from-stone-600 dark:via-transparent dark:to-transparent dark:before:bg-[#202022] sm:h-12 sm:w-12 sm:rounded-xl sm:text-lg sm:before:rounded-xl;
     box-shadow: -4px 8px 24px hsla(0, 0%, 0%, 0.25);
     ion-icon {
       @apply sm:text-2xl;
     }
   }
   .timeline-list {
-    @apply ml-11 text-[14px] sm:ml-16 sm:text-[16px];
+    @apply ml-11 text-sm sm:ml-16 sm:text-base;
     .timeline-item {
       @apply relative mb-5 before:absolute before:-left-[30px] before:-top-6 before:w-[1px] before:bg-amber-300 before:content-[''] last:mb-0 last:before:invisible last:before:h-0 last:before:w-0 dark:before:bg-[#383838] sm:before:-left-10;
       &::before {
         height: calc(100% + 50px);
       }
       &-title {
-        @apply mb-2 text-[14px] leading-tight lg:text-[16px] xl:text-lg;
+        @apply mb-2 text-sm leading-tight lg:text-base xl:text-lg;
       }
       &::after {
         @apply absolute -left-[33px] top-[5px] xl:top-[10px] h-[6px] w-[6px] rounded-full bg-gradient-to-t from-yellow-400 from-[72%] to-yellow-500 to-[68%] content-[''] sm:-left-[43px] sm:h-2 sm:w-2;
@@ -416,7 +416,7 @@
   .title-wrapper {
     @apply mb-2 flex items-center gap-2;
     data {
-      @apply text-[14px] font-normal text-gray-400;
+      @apply text-sm font-normal text-gray-400;
     }
   }
 
