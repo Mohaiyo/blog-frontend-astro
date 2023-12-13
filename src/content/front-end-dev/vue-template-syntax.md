@@ -1,5 +1,5 @@
 ---
-title: 'Vue2简明指南之--模板语法'
+title: 'Vue简明指南之--模板语法'
 pubDate: 2018-02-23
 description: '通过探索其富有表现力的模板语法，深入了解 Vue.js 2 的动态世界。从用于无缝数据绑定的双大括号到 v-if 和 v-for 等强大指令，了解 Vue.js 2 如何简化 UI 开发。'
 author: 'Wayne.Liang'
