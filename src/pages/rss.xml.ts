@@ -1,17 +1,18 @@
-import rss, { pagesGlobToRssItems } from '@astrojs/rss'
-import { getCollection } from 'astro:content'
+import rss from '@astrojs/rss'
+import { fetchAllPost } from '@utils/index'
 
-export async function GET(context) {
-  const posts = await getCollection('posts')
+const { allPosts } = await fetchAllPost()
+
+export async function GET(context: { site: string }) {
   return rss({
-    title: 'Astro Learner | Blog',
-    description: 'My journey learning Astro',
+    title: 'TechConnect',
+    description: 'TechConnect: 探索科技世界的无限可能',
     site: context.site,
-    items: posts.map((post) => ({
+    items: allPosts.map((post) => ({
       title: post.data.title,
       pubDate: post.data.pubDate,
       description: post.data.description,
-      link: `/posts/${post.slug}/`
+      link: `/${post.collection}/${post.slug}/`
     })),
     customData: `<language>en-us</language>`
   })

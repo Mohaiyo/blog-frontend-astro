@@ -4,10 +4,11 @@ import vue from '@astrojs/vue'
 import { remarkReadingTime } from './src/plugins/remark-reading-time'
 import mdx from '@astrojs/mdx'
 import fs from 'node:fs'
+import sitemap from '@astrojs/sitemap'
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://tech-connection.netlify.app/',
+  site: 'https://tech-connection.netlify.app',
   image: {
     service: squooshImageService()
   },
@@ -23,13 +24,18 @@ export default defineConfig({
         }
       }
     }),
-    mdx()
+    mdx(),
+    sitemap()
   ],
   markdown: {
     remarkPlugins: [remarkReadingTime],
     syntaxHighlight: 'shiki',
     shikiConfig: {
-      theme: JSON.parse(fs.readFileSync('./houston.theme.json', { encoding: 'utf-8' }))
+      theme: JSON.parse(
+        fs.readFileSync('./houston.theme.json', {
+          encoding: 'utf-8'
+        })
+      )
     },
     rehypePlugins: []
   }
