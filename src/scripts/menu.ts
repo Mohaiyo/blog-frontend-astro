@@ -24,3 +24,31 @@ if (hamburgerEle) {
     })
   })
 }
+
+const backToTopEle = document.querySelector('.back-to-top')
+const rootElement = document.documentElement
+
+if (backToTopEle) {
+  document.addEventListener('astro:page-load', () => {
+    backToTopEle.addEventListener('click', () => {
+      rootElement.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+    })
+  })
+
+  const handleScroll = () => {
+    // Do something on scroll
+    const scrollTotal = rootElement.scrollHeight - rootElement.clientHeight
+    if (rootElement.scrollTop / scrollTotal > 0.3) {
+      // Show button
+      backToTopEle.classList.add('show')
+    } else {
+      // Hide button
+      backToTopEle.classList.remove('show')
+    }
+  }
+
+  document.addEventListener('scroll', handleScroll, { passive: true })
+}

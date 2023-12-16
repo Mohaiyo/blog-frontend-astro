@@ -58,6 +58,13 @@ const seoTitle = title ? title + ' | ' + 'TechConnect' : 'TechConnect: 探索科
     <main class="main-container">
       <slot />
     </main>
+    <button class="back-to-top no-underline p-2.5 text-white bg-black z-10 leading-none h-[44px] text-2xl fixed bottom-8 right-8 translate-y-24 invisible opacity-0 transition-all duration-500">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <ion-icon name="chevron-up-outline"></ion-icon>
+    </button>
     <Footer />
     <script>
       import '../scripts/menu.ts'
@@ -67,6 +74,85 @@ const seoTitle = title ? title + ' | ' + 'TechConnect' : 'TechConnect: 探索科
         @apply container mx-auto max-w-5xl px-4 py-6 text-sm;
         min-height: calc(100vh - 124px);
         line-height: 1.5;
+      }
+      button.back-to-top {
+        overflow: hidden;
+        &.show {
+          opacity: 1;
+          transform: translateY(0);
+          visibility: visible;
+        }
+        span:nth-child(1) {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background: linear-gradient(to right, transparent, #17f3fd);
+          animation: toRightAnimate 2s linear infinite;
+        }
+        @keyframes toRightAnimate {
+          0% {
+            transform: translateX(-100%);
+          }
+          100% {
+            transform: translateX(100%);
+          }
+        }
+        span:nth-child(2) {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 2px;
+          height: 100%;
+          background: linear-gradient(to bottom, transparent, #17f3fd);
+          animation: toBottomAnimate 2s linear infinite;
+          animation-delay: 1s;
+        }
+        @keyframes toBottomAnimate {
+          0% {
+            transform: translateY(-100%);
+          }
+          100% {
+            transform: translateY(100%);
+          }
+        }
+
+        span:nth-child(3) {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background: linear-gradient(to left, transparent, #17f3fd);
+          animation: toLeftAnimate 2s linear infinite;
+        }
+        @keyframes toLeftAnimate {
+          0% {
+            transform: translateX(100%);
+          }
+          100% {
+            transform: translateX(-100%);
+          }
+        }
+        span:nth-child(4) {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 2px;
+          height: 100%;
+          background: linear-gradient(to top, transparent, #17f3fd);
+          animation: toTopAnimate 2s linear infinite;
+          animation-delay: 1s;
+        }
+        @keyframes toTopAnimate {
+          0% {
+            transform: translateY(100%);
+          }
+          100% {
+            transform: translateY(-100%);
+          }
+        }
       }
     </style>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
