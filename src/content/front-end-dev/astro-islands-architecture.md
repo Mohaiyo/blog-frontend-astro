@@ -10,6 +10,8 @@ category: '前端开发'
 tags: ['Astro']
 ---
 
+## Contents
+
 ## 什么是群岛
 
 **Astro 群岛**指的是静态 HTML 中的交互性的 UI 组件。一个页面上可以有多个岛屿，并且每个岛屿都被独立呈现。你可以将它们想象成在一片由静态（不可交互）的 HTML 页面中的动态岛屿。“群岛架构”由 Etsy 前端架构工程师[Katie Sylor-Miller](https://twitter.com/ksylor) 于 2019 年首次提出，并由 Preact 的作者 [Jason Miller](https://jasonformat.com/islands-architecture/) 在这篇文章进行了扩展。

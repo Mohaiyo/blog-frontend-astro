@@ -1,4 +1,8 @@
 import { defineConfig, squooshImageService } from 'astro/config'
+import remarkToc from 'remark-toc'
+import { h } from 'hastscript'
+import rehypeSlug from 'rehype-slug'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import tailwind from '@astrojs/tailwind'
 import vue from '@astrojs/vue'
 import { remarkReadingTime } from './src/plugins/remark-reading-time'
@@ -28,7 +32,19 @@ export default defineConfig({
     sitemap()
   ],
   markdown: {
-    remarkPlugins: [remarkReadingTime],
+    remarkPlugins: [[remarkToc, { heading: 'contents' }], remarkReadingTime],
+    rehypePlugins: [
+      rehypeSlug,
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: 'prepend',
+          content: [h('ion-icon', { name: 'link-outline' })],
+          headingProperties: { style: 'display: flex; align-items:center; gap: 8px;' },
+          properties: { ariaHidden: true, tabIndex: -1, style: 'display: inline-flex;align-items: center;font-size:20px;' }
+        }
+      ]
+    ],
     syntaxHighlight: 'shiki',
     shikiConfig: {
       theme: JSON.parse(
@@ -36,7 +52,6 @@ export default defineConfig({
           encoding: 'utf-8'
         })
       )
-    },
-    rehypePlugins: []
+    }
   }
 })
