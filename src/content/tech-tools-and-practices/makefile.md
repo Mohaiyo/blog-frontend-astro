@@ -11,6 +11,6 @@ tags: ['makefile']
 
 ## makefile
 
-```HTML
+```html
 <div>Make file test</div>
 ```
