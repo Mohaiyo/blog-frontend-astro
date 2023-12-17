@@ -22,3 +22,21 @@ body {
 img {
   content-visibility: auto;
 }
+
+
+.copy-code {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #3730a3;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  border-radius: 0 6px 0 6px;
+  transition: all 0.15s linear;
+  text-align: center;
+}
+
+.copy-code:hover {
+  background-color: #312e81;
+}
