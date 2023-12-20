@@ -97,6 +97,8 @@
           </a>
         </li>
       </ul>
+
+      <div class="flex flex-col justify-center items-center mt-2 gap-1">Inspired by<a href="https://github.com/codewithsadee/vcard-personal-portfolio" target="_blank" class="underline underline-offset-4">VCard personal portfolio</a></div>
     </div>
   </aside>
 </template>

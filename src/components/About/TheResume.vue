@@ -63,7 +63,7 @@
                 开发和维护公司数据系统前端功能，为亚马逊与独立站运营提供销售额、广告、库存、订单等数据，并为管理层提供即时报表，帮助优化决策。
               </li>
               <li class="mb-1">
-                搭建公司广告自动化系统平台前端项目，支持广告组进行亚马逊广告自动化业务，提供即时的广告数据，并通过自动化模型提升广告效率，丰富广告打法，提高广告追踪分析的效能。
+                搭建公司广告自动化系统平台前端项目，支持广告组进行亚马逊广告自动化业务，提供即时的广告数据，并通过自动化模型提升广告投放效率和ROI，丰富广告打法，提高广告追踪分析的效能。
               </li>
               <li class="mb-1"> 负责ERP系统前端权限校验、物流报关等模块的重构。 </li>
               <li>开发独立站新品发布、红人系统、退换货、评论插件等业务功能统一管理平台，为独立站运营提供技术支持。</li>
@@ -244,7 +244,7 @@
           <div class="relative">
             <div class="work-title">技术架构</div>
           </div>
-          <p class="timeline-text"> Vue + Nuxt.js + Axios + Vuetify + PWA + Webpack等 </p>
+          <p class="timeline-text"> Vue + Vue-Resource + Vue-Router + Element-UI + ECharts + Webpack等 </p>
 
           <div class="relative">
             <div class="work-title">主要工作</div>
@@ -379,7 +379,7 @@
         @apply mb-2 text-sm leading-tight lg:text-base xl:text-lg;
       }
       &::after {
-        @apply absolute -left-[33px] top-[5px] xl:top-[10px] h-[6px] w-[6px] rounded-full bg-gradient-to-t from-yellow-400 from-[72%] to-yellow-500 to-[68%] content-[''] sm:-left-[43px] sm:h-2 sm:w-2;
+        @apply absolute -left-[33px] top-[5px] h-[6px] w-[6px] rounded-full bg-gradient-to-t from-yellow-400 from-[72%] to-yellow-500 to-[68%] content-[''] sm:-left-[43px] sm:h-2 sm:w-2 xl:top-[10px];
         box-shadow: 0 0 0 4px #383838;
       }
     }

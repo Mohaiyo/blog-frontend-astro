@@ -16,15 +16,21 @@ export const fetchAllPost = async () => {
   const dbAndStorageEntriesPromise = getCollection('db-and-storage')
   const cloudComputingAndDeploymentEntriesPromise = getCollection('cloud-computing-and-deployment')
   const techToolsAndPracticesEntriesPromise = getCollection('tech-tools-and-practices')
-  const [postsEntries, frontEndDevEntries, backEndDevEntries, dbAndStorageEntries, cloudComputingAndDeploymentEntries, techToolsAndPracticesEntries] =
-    await Promise.all([
-      postsEntriesPromise,
-      frontEndDevEntriesPromise,
-      backEndDevEntriesPromise,
-      dbAndStorageEntriesPromise,
-      cloudComputingAndDeploymentEntriesPromise,
-      techToolsAndPracticesEntriesPromise
-    ])
+  const [
+    postsEntries,
+    frontEndDevEntries,
+    backEndDevEntries,
+    dbAndStorageEntries,
+    cloudComputingAndDeploymentEntries,
+    techToolsAndPracticesEntries
+  ] = await Promise.all([
+    postsEntriesPromise,
+    frontEndDevEntriesPromise,
+    backEndDevEntriesPromise,
+    dbAndStorageEntriesPromise,
+    cloudComputingAndDeploymentEntriesPromise,
+    techToolsAndPracticesEntriesPromise
+  ])
   return {
     allPosts: [
       ...postsEntries,
@@ -36,11 +42,23 @@ export const fetchAllPost = async () => {
     ].sort((a, b) => {
       return new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
     }),
-    posts: postsEntries,
-    frontEndDev: frontEndDevEntries,
-    backEndDev: backEndDevEntries,
-    dbAndStorage: dbAndStorageEntries,
-    cloudComputingAndDeployment: cloudComputingAndDeploymentEntries,
-    techToolsAndPractices: techToolsAndPracticesEntries,
+    posts: postsEntries.sort((a, b) => {
+      return new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+    }),
+    frontEndDev: frontEndDevEntries.sort((a, b) => {
+      return new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+    }),
+    backEndDev: backEndDevEntries.sort((a, b) => {
+      return new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+    }),
+    dbAndStorage: dbAndStorageEntries.sort((a, b) => {
+      return new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+    }),
+    cloudComputingAndDeployment: cloudComputingAndDeploymentEntries.sort((a, b) => {
+      return new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+    }),
+    techToolsAndPractices: techToolsAndPracticesEntries.sort((a, b) => {
+      return new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+    })
   }
 }
