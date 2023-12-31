@@ -6,7 +6,7 @@ author: 'Wayne.Liang'
 image:
   cover: '../assets/posts/vue2-crash-course.png'
   alt: 'vue2 crash course'
-category: '读书笔记'
+category: '其他'
 tags: ['Vue.js', 'Vue2']
 ---
 
