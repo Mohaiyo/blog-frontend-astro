@@ -74,7 +74,7 @@
   import devIcon from '@assets/icon-dev.svg'
 </script>
 
-<style scoped lang="scss">
+<style scoped>
   @keyframes fade {
     0% {
       opacity: 0;

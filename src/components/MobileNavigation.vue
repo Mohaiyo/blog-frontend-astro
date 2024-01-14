@@ -36,7 +36,7 @@
   ]
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
   .header-nav .site-mobile-nav {
     width: 300px;
     position: fixed;
@@ -86,7 +86,7 @@
   }
 </style>
 
-<style lang="scss">
+<style scoped>
   .dark {
     .header-nav .site-mobile-nav {
       background-color: rgba(0, 11, 12, 1);

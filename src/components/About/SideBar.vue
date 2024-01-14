@@ -113,7 +113,7 @@
   }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
   .sidebar {
     @apply mb-4 max-h-28 overflow-hidden rounded-[18px] border bg-white p-4 shadow-md  transition-all dark:border-neutral-600 dark:bg-[#1e1e1f] sm:mx-auto sm:mb-[30px] sm:max-h-[180px] sm:p-[30px] md:w-[700px] lg:mx-auto lg:w-[800px] lg:shadow-xl xl:sticky xl:top-14 xl:z-[1] xl:mb-0 xl:h-full xl:max-h-[max-content] xl:pt-14;
     &.active {

@@ -32,7 +32,7 @@
   }
 </script>
 
-<style scoped lang="scss">
+<style scoped>
   .main-content {
     @apply m-auto lg:relative lg:w-max xl:m-0 xl:w-[70%] xl:min-w-[70%];
   }

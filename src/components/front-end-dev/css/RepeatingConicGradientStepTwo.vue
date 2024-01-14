@@ -6,7 +6,7 @@
 
 <script setup lang="ts"></script>
 
-<style scoped lang="css">
+<style scoped>
   @property --angle {
     syntax: '<angle>';
     inherits: false;

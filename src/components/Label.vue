@@ -22,5 +22,3 @@
     teal: 'text-teal-600'
   }
 </script>
-
-<style lang="scss" scoped></style>

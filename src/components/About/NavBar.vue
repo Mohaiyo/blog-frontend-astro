@@ -49,7 +49,7 @@
   }
 </script>
 
-<style scoped lang="scss">
+<style scoped>
   .navbar {
     @apply fixed bottom-0 left-0 z-10 w-full rounded-xl rounded-bl-none rounded-br-none border bg-amber-50 shadow-xl shadow-stone-400 backdrop-blur dark:border-[#383838] dark:bg-stone-800 sm:rounded-[20px] sm:rounded-br-none sm:rounded-tl-none lg:absolute lg:bottom-auto lg:left-auto lg:right-0 lg:top-0 lg:w-max lg:rounded-[20px] lg:rounded-br-none lg:rounded-tl-none lg:px-5 lg:shadow-none;
     .navbar-list {
