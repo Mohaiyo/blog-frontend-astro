@@ -4,7 +4,7 @@ pubDate: 2024-01-16
 description: '了解柯里化的概念以及应用场景。'
 author: 'Wayne.Liang'
 image:
-  cover: '../assets/front-end-dev/astro-islands-arc-cover.png'
+  cover: '../assets/front-end-dev/curring.png'
   alt: 'currying'
 category: '前端开发'
 tags: ['Javascript']
@@ -192,6 +192,6 @@ function curried(...args) {
 
 ## 总结
 
-柯里化 是一种转换，将 `f(a,b,c)` 转换为可以被以 `f(a)(b)(c)` 的形式进行调用。JavaScript 实现通常都保持该函数可以被正常调用，并且如果参数数量不足，则返回部分应用函数。
+柯里化是一种转换，将 `f(a,b,c)` 转换为可以被以 `f(a)(b)(c)` 的形式进行调用。JavaScript 实现通常都保持该函数可以被正常调用，并且如果参数数量不足，则返回部分应用函数。
 
 柯里化让我们能够更容易地获取部分应用函数。就像我们在日志记录示例中看到的那样，普通函数 `log(date, importance, message)` 在被柯里化之后，当我们调用它的时候传入一个参数（如 `log(date)）`或两个参数`（log(date, importance)）`时，它会返回部分应用函数。
