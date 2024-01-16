@@ -12,6 +12,7 @@
       "@plugins/*": ["src/plugins/*"],
       "@data/*": ["src/data/*"],
       "@utils/*": ["src/utils/*"]
-    }
+    },
+    "types": ["vitest/globals"]
   }
 }
