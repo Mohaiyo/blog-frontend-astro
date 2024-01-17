@@ -178,12 +178,152 @@ function curried(...args) {
 
 然后，如果我们再次调用它，我们将得到一个新的部分应用函数（如果没有足够的参数），或者最终的结果。
 
-## 常见的使用场合
+## 常见的使用场景
 
-- 闭包
-- 防抖 debounce
-- 节流 throttle
-- 复杂运算缓存
+### 参数复用
+
+通过柯里化，可以将一个多参数的函数转化为一个接受部分参数的函数，从而实现参数的复用。这在需要多次调用同一个函数，但其中某些参数保持不变的场景，如日志打印，重复执行的正则校验等场景中非常有用。
+
+```javascript
+const sum = (x, y, z) => x + y + z
+const curriedSum = curry(sum)
+
+// 使用柯里化后的函数,固定第一个参数为5
+const sum5 = curriedSum(5)
+
+console.log(sum5(2)(3)) // 10
+console.log(sum5(1)(4)) // 10
+```
+
+### 复杂运算缓存
+
+当业务中我们遇到一个复杂的计算函数需要反复运行时，如果每次都从新计算一次，会浪费大量的性能，这时我们可以用记忆函数来缓存计算的过程，典型的例如斐波那契函数。
+
+```javascript
+const fibonacci = (x) => {
+  if (x === 1 || x === 2) {
+    return 1
+  }
+
+  return fibonacci(x - 1) + fibonacci(x - 2)
+}
+```
+
+当我们计算第35个数是需要的时间为
+
+```javascript
+const startTime = new Date().getTime()
+fibonacci(35)
+const spentTime = new Date().getTime() - startTime
+
+console.log(spentTime) // 103ms
+```
+
+因为`fibonacci`的计算过程都是一样的，所以每次计算时，其实多数字我们已经计算过了，进行重复计算是没有必要的。因此我们可以使用一个缓存函数对历史计算的结果进行缓存，等到下次再执行相同的数的时候直接取已经缓存过的计算结果即可。
+
+```javascript
+// 缓存函数
+const memo = (func) => {
+  const cacheObj = {}
+  return (str) => {
+    if (!cacheObj[str]) {
+      const calculateVal = func(str)
+      cacheObj[str] = calculateVal
+    }
+
+    return cacheObj[str]
+  }
+}
+
+// 缓存斐波那契函数
+const fibonacciMemo = memo(fibonacci)
+
+const startTime = new Date().getTime()
+fibonacciMemo(35)
+const spentTime = new Date().getTime() - startTime
+console.log(spentTime) // 103ms again
+
+// 再调用一次
+const startTime = new Date().getTime()
+fibonacciMemo(35)
+const spentTime = new Date().getTime() - startTime
+console.log(spentTime) // 0ms
+```
+
+### 延迟执行
+
+柯里化可以用于延迟函数的执行，即在需要时才执行函数。这在需要处理异步操作或需要等待特定条件满足时非常有用。
+
+```javascript
+// 柯里化前的函数
+function fetchData(url, params) {
+  // 发送网络请求并返回 Promise
+  // ...
+}
+
+// 柯里化后的函数
+const curriedFetchData = curry(fetchData)
+
+// 使用柯里化后的函数
+const fetchUser = curriedFetchData('/api/user')
+const useData = await fetchUser({ id: 1 })
+console.log('useData', useData)
+
+const fetchProducts = curriedFetchData('/api/products')
+const productData = await fetchProducts({ category: 'electronics' })
+console.log('productData', productData)
+```
+
+### 函数组合
+
+柯里化可以与函数组合相结合，实现更复杂的函数操作。通过将多个柯里化函数组合在一起，可以构建出更高阶的函数，实现更复杂的逻辑。
+
+```javascript
+function add(a, b) {
+  return a + b
+}
+
+function multiply(a, b) {
+  return a * b
+}
+
+// 柯里化后的函数
+const curriedAdd = curry(add)
+const curriedMultiply = curry(multiply)
+
+// 函数组合
+const addAndMultiply = (a) => curriedMultiply(3)(curriedAdd(2, a))
+
+console.log(addAndMultiply(7)) // 输出: 27
+```
+
+在上面的示例中，我们通过柯里化将add和multiply函数转化为接受单个参数的函数链，然后通过函数组合将它们组合在一起，实现了一个先加2再乘以3的复合函数。
+
+### 数据转换
+
+柯里化可以应用于数据转换的场景，特别是在函数式管道（Pipeline）中。通过将多个柯里化函数组合在一起，可以构建一个数据转换的管道，将数据依次传递给每个函数进行处理，实现复杂的数据转换操作。
+
+```javascript
+// 柯里化前的函数
+function square(n) {
+  return n * n
+}
+
+function double(n) {
+  return n * 2
+}
+
+// 柯里化后的函数
+const curriedSquare = curry(square)
+const curriedDouble = curry(double)
+
+// 数据转换
+const transform = (data) => data.map(curriedSquare).map(curriedDouble)
+
+const numbers = [1, 2, 3, 4, 5]
+const transformedData = transform(numbers)
+console.log(transformedData) // 输出: [2, 8, 18, 32, 50]
+```
 
 ## 注意事项
 
