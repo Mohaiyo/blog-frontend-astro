@@ -391,7 +391,7 @@
     }
   }
   .work-title {
-    @apply mb-2 mt-2 indent-2 before:absolute before:left-0 before:mr-1 before:h-4 before:w-1 before:translate-y-1 before:rounded-sm before:bg-amber-300 before:content-[''] dark:before:bg-white;
+    @apply mb-2 mt-2 indent-2 before:absolute before:left-0 before:mr-1 before:h-4 before:w-1 before:translate-y-0.5 before:rounded-sm before:bg-amber-300 before:content-[''] dark:before:bg-white;
   }
   .article-title {
     @apply relative pb-2 sm:pb-4 sm:font-bold md:pb-5;

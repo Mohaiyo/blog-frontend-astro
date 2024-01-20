@@ -5,32 +5,18 @@
     </header>
 
     <section class="about-text">
+      <p> 孩子的父亲 | 还算合格的丈夫 | 中年 | 慢热但有耐心 | 非典型程序员 </p>
       <p>
-        专注于构建现代化、高性能的Web应用程序。我的技能涵盖了Vue.js、React、JavaScript、TypeScript、HTML、CSS、Tailwind
-        CSS以及Vite等前端技术。
+        22年以前都不算一个有责任心的人，23年好像开悟了，正在努力挣钱养娃，努力成为一个的有情调的老公，合格的父亲和儿子。
       </p>
-
-      <p>
-        职业生涯中，我成功地参与并领导了多个复杂的前端项目，为客户提供了高质量、用户友好的解决方案。我熟练运用Vue.js框架，能够构建可维护、可扩展的单页面应用程序（SPA）。我的JavaScript和TypeScript编码能力使我能够处理各种前端任务，并确保代码的可读性和可维护性。
-      </p>
-
-      <p>
-        项目上，我善于与设计团队合作，将设计概念转化为现实，并通过优化性能和用户体验来不断改进应用。我的工作经验中涵盖了响应式设计、跨浏览器兼容性、以及利用现代化工具和框架提高开发效率的方面。
-      </p>
-      <p>
-        熟悉HTML和CSS，善于使用Tailwind
-        CSS进行快速样式开发，提高了开发速度同时保持代码的整洁性。我还熟悉Vite等工具，能够借助它们的强大功能进行项目的快速开发和部署。
-      </p>
-
-      <p>总的来说，我对前端技术有着深厚的热情，持续关注行业的发展动向，并不断扩充自己的技能栈。</p>
+      <p> 24年以后希望能拥抱开源，有更多的精力探索自己喜欢的事情，想要做出一点一点不一样的改变。 </p>
+      <p> 会点啥：Vue.js、React、JavaScript、TypeScript、HTML、CSS、Tailwind、MySql、Nodejs</p>
     </section>
 
-    <!--
-  - service
--->
+    <!--service star-->
 
     <section class="service">
-      <h3 class="h3 service-title">我在做什么</h3>
+      <h3 class="h3 service-title">在做什么</h3>
 
       <ul class="service-list">
         <li class="service-item">
@@ -39,25 +25,15 @@
           </div>
 
           <div class="service-content-box">
-            <h4 class="h4 service-item-title">Web前端开发工程师</h4>
+            <h4 class="h4 service-item-title">Frontend Developer</h4>
 
-            <p class="service-item-text"> 专业级的网站Web前端开发能力。 </p>
-          </div>
-        </li>
-
-        <li class="service-item">
-          <div class="service-icon-box">
-            <img :src="designIcon.src" alt="design icon" width="40" />
-          </div>
-
-          <div class="service-content-box">
-            <h4 class="h4 service-item-title">Web设计</h4>
-
-            <p class="service-item-text"> 最前沿的高质量的专业级的设计能力。 </p>
+            <p class="service-item-text"> 具备扎实的前端开发能力。 </p>
           </div>
         </li>
       </ul>
     </section>
+
+    <!--service end-->
   </article>
 </template>
 

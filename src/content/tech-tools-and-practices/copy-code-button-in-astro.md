@@ -82,14 +82,14 @@ copyButton.innerHTML = copyButtonLabel
   position: absolute;
   top: 0;
   right: 0;
-  background-color: #3730a3;
+  background-color: #2563eb;
   padding: 0.25rem 0.5rem;
   font-size: 0.75rem;
   line-height: 1rem;
 }
 
 .copy-code:hover {
-  background-color: #312e81;
+  background-color: #3b82f6;
 }
 ```
 

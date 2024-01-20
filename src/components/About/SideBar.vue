@@ -14,7 +14,7 @@
       <div class="info-content">
         <h1 class="name" title="Wayne Liang">Wayne Liang</h1>
 
-        <p class="title">高级前端开发工程师</p>
+        <p class="title">Frontend Developer</p>
       </div>
 
       <button class="info_more-btn" data-sidebar-btn @click="onShowMoreHandle">
@@ -36,18 +36,6 @@
             <p class="contact-title">邮箱</p>
 
             <a href="mailto:mohaiyo@163.com" class="contact-link">mohaiyo@163.com</a>
-          </div>
-        </li>
-
-        <li class="contact-item">
-          <div class="icon-box">
-            <ion-icon name="phone-portrait-outline"></ion-icon>
-          </div>
-
-          <div class="contact-info">
-            <p class="contact-title">手机号</p>
-
-            <a href="tel:18578262007" class="contact-link">18578262007</a>
           </div>
         </li>
 
@@ -171,11 +159,11 @@
       @apply visible opacity-100;
     }
     .separator {
-      @apply my-4 h-[1px] w-full bg-amber-200 dark:bg-stone-700 sm:my-8 xl:last-of-type:my-4 xl:last-of-type:opacity-0;
+      @apply my-4 h-[1px] w-full bg-amber-200 dark:bg-stone-700 sm:my-6 xl:last-of-type:my-4 xl:last-of-type:opacity-0;
     }
 
     .contacts-list {
-      @apply grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 md:gap-x-4 md:gap-y-8 xl:grid-cols-1;
+      @apply grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 md:gap-x-4 md:gap-y-5 xl:grid-cols-1;
     }
     .contact-item {
       @apply flex min-w-full items-center gap-4;
