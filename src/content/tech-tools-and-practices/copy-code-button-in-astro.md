@@ -18,7 +18,7 @@ tags: ['Astro']
 
 ## 介绍
 
-在网站上的代码块中添加`Copy Code`按钮可以极大地增强访问者的用户体验。它允许用户快速轻松地从您的网站复制代码片段，而无需手动选择、复制和粘贴代码。这可以节省用户时间并改善他们在您网站上的整体体验。
+在网站上的代码块中添加`Copy`按钮可以极大地增强访问者的用户体验。它允许用户快速轻松地从您的网站复制代码片段，而无需手动选择、复制和粘贴代码。这可以节省用户时间并改善他们在您网站上的整体体验。
 
 ## 准备Astro布局
 
@@ -46,10 +46,10 @@ post content
 
 ## 添加复制按钮
 
-在我们新创建的布局中，我们添加一些客户端 JavaScript 将按钮渲染到 dom 上。 我们首先定义一个名为`copyButtonLabel`的变量并将其值设置为`Copy Code`。 该变量将用于设置我们将添加到代码块的复制按钮的标签。
+在我们新创建的布局中，我们添加一些客户端 JavaScript 将按钮渲染到 dom 上。 我们首先定义一个名为`copyButtonLabel`的变量并将其值设置为`Copy`。 该变量将用于设置我们将添加到代码块的复制按钮的标签。
 
 ```javascript
-let copyButtonLabel = 'Copy Code'
+let copyButtonLabel = 'Copy'
 ```
 
 接下来，我们使用 `document.querySelectorAll` 函数选择页面的所有 `pre` 元素。 为了使选定的 `elmenets` 可迭代，我们使用 `Array.from` 方法将它们转换为数组，并将其存储在`codeBlock`变量中。
@@ -151,7 +151,7 @@ async function copyCode(block, button) {
 ---
 
 <script>
-  let copyButtonLabel = "Copy Code";
+  let copyButtonLabel = "Copy";
   let codeBlocks = Array.from(document.querySelectorAll("pre"));
 
   for (let codeBlock of codeBlocks) {
@@ -180,7 +180,7 @@ async function copyCode(block, button) {
     await navigator.clipboard.writeText(text);
 
     // visual feedback that task is completed
-    button.innerText = "Code Copied";
+    button.innerText = "Copied";
 
     setTimeout(() => {
       button.innerText = copyButtonLabel;
@@ -191,4 +191,4 @@ async function copyCode(block, button) {
 <slot />
 ```
 
-使用此 JavaScript 代码，您可以轻松地将`Copy Code`按钮添加到网站上的任何代码块，使其对您的用户来说更加用户友好和高效。 该代码很容易理解，您可以对其进行自定义以满足您的需求。
+使用此 JavaScript 代码，您可以轻松地将`Copy`按钮添加到网站上的任何代码块，使其对您的用户来说更加用户友好和高效。 该代码很容易理解，您可以对其进行自定义以满足您的需求。

@@ -7,7 +7,7 @@ image:
   cover: '../assets/tech-tools-and-practices/best-practices-create-modern-npm-package.png'
   alt: 'Best practices for creating a modern npm package with security in mind'
 category: '技术工具与实践'
-tags: ['NPM', 'GITHUB', 'GITHUB ACTIONS']
+tags: ['NPM', 'GITHUB']
 ---
 
 > 原文地址 [Best practices for creating a modern npm package with security in mind](https://snyk.io/blog/best-practices-create-modern-npm-package/)
@@ -157,9 +157,9 @@ cd modern-npm-package
 
 ### 构建CommonJS和ECMAScript模块化格式的npm包
 
-虽然 ECMAScript 模块格式现在在 Node.js 12+ 版本中得到原生支持，但它尚未被社区广泛采用。为了面向未来并支持这两种格式，您将看到如何使用 TypeScript 为它们准备 npm 包。
+虽然 ECMAScript 模块格式现在在 Node.js 12+ 版本中得到原生支持，但它尚未被社区广泛采用。为了面向未来并支持这两种格式，你将看到如何使用 TypeScript 为它们准备 npm 包。
 
-1. 首先创建一个基础名为`tsconfig.base.json`的配置文件。这是通用的编译设置，无论您的目标是哪种模块格式，都可以使用这些设置。请根据您的项目需要随意调整这些，特别是如果您不使用提供的示例，您将需要调整文件属性以与您的项目结构保持一致。
+1. 首先创建一个基础名为`tsconfig.base.json`的配置文件。这是通用的编译设置，无论你的目标是哪种模块格式，都可以使用这些设置。请根据你的项目需要随意调整这些，特别是如果你不使用提供的示例，你将需要调整文件属性以与你的项目结构保持一致。
 
 ```json
 {
@@ -180,7 +180,7 @@ cd modern-npm-package
 
 2. 然后创建一个 CommonJS 格式的 TypeScript 配置文件，并将其命名为 `tsconfig.cjs.json`。
 
-- `lib` 属性向 TypeScript 指示它应该引用哪些类型来帮助您为项目编写代码。
+- `lib` 属性向 TypeScript 指示它应该引用哪些类型来帮助你为项目编写代码。
 - `target` 属性向 TypeScript 指示要编译项目代码的 JavaScript 版本。
 - `module` 属性向 TypeScript 指示编译项目代码时应使用哪种 JavaScript 模块格式。
 - `moduleResolution` 属性帮助 TypeScript 确定如何引用“import”语句
@@ -200,7 +200,7 @@ cd modern-npm-package
 }
 ```
 
-3. 之后，创建 ECMAScript 格式的 TypeScript 配置文件并将其命名为 `tsconfig.esm.json`。这里的属性与您在 CommonJS 配置中看到的相同，但现在将现代 ECMAScript 模块格式作为其输出。
+3. 之后，创建 ECMAScript 格式的 TypeScript 配置文件并将其命名为 `tsconfig.esm.json`。这里的属性与你在 CommonJS 配置中看到的相同，但现在将现代 ECMAScript 模块格式作为其输出。
 
 ```json
 {
@@ -216,9 +216,9 @@ cd modern-npm-package
 }
 ```
 
-4. 使用指向 `lib` 文件夹的 `files` 字段更新您的 `package.json` 文件，其中包含 TypeScript 为您构建包的结果。
+4. 使用指向 `lib` 文件夹的 `files` 字段更新你的 `package.json` 文件，其中包含 TypeScript 为你构建包的结果。
 
-5. 使用`exports`字段更新 `package.json` 文件，以定义如何根据使用的模块加载器（CJS 与 ESM）查找源文件。您可以在[Node.js 文档](https://nodejs.org/api/packages.html#packages_exports)中阅读有关此导出字段支持的更多信息。
+5. 使用`exports`字段更新 `package.json` 文件，以定义如何根据使用的模块加载器（CJS 与 ESM）查找源文件。你可以在[Node.js 文档](https://nodejs.org/api/packages.html#packages_exports)中阅读有关此导出字段支持的更多信息。
 
 ```json
   "exports": {
@@ -266,19 +266,19 @@ cd modern-npm-package
   "prepack": "npm run build"
 ```
 
-9. 现在，您可以在终端中运行 `npm run build`，让 TypeScript 构建您的项目，为使用和发布做好准备。
+9. 现在，你可以在终端中运行 `npm run build`，让 TypeScript 构建你的项目，为使用和发布做好准备。
 
-这就是使用 TypeScript 构建支持 CommonJS 和 ECMAScript 模块格式的 npm 包所需要做的所有设置。接下来，您将学习如何针对 npm 包代码设置和运行测试，以确保它产生您期望的结果。
+这就是使用 TypeScript 构建支持 CommonJS 和 ECMAScript 模块格式的 npm 包所需要做的所有设置。接下来，你将学习如何针对 npm 包代码设置和运行测试，以确保它产生你期望的结果。
 
-### 添加测试
+### 设置和编写单元测试
 
-为了对代码的行为和结果充满信心，您需要实施测试过程。测试迫使您在首次创建代码时以不同的方式思考代码的功能，而不是典型的、愉快的路径。举个例子，你可以想办法破坏一个函数，使其抛出错误或产生不期望的结果。这样做将使您的应用程序更具弹性和可持续性，并确保在添加更多应用程序时不会出现任何中断。
+为了对代码的行为和结果充满信心，你需要实施测试过程。测试迫使你在首次创建代码时以不同的方式思考代码的功能，而不是典型的、愉快的路径。举个例子，你可以想办法破坏一个函数，使其抛出错误或产生不期望的结果。这样做将使你的应用程序更具弹性和可持续性，并确保在添加更多应用程序时不会出现任何中断。
 
-如果您想更深入地进行测试并了解其最佳实践，请务必阅读 Yoni Goldberg 的 [JavaScript 最佳实践存储库](https://github.com/goldbergyoni/javascript-testing-best-practices)。
+如果你想更深入地进行测试并了解其最佳实践，请务必阅读 Yoni Goldberg 的 [JavaScript 最佳实践存储库](https://github.com/goldbergyoni/javascript-testing-best-practices)。
 
-### 单元测试
+#### 单元测试
 
-确保您的包按照您希望的方式运行需要针对您的代码编写测试。您需要一些工具来帮助设置项目来运行单元测试并显示结果。这些工具是 Mocha.js、Chai.js 和 ts-node。 [Mocha.js](https://mochajs.org/) 是一个测试运行程序，[Chai.js](https://www.chaijs.com/) 是一个断言库，可帮助确定您是否从代码中获得了预期的结果，而 [ts-node](https://www.npmjs.com/package/ts-node) 帮助我们在 TypeScript 项目中使用这些工具。请按照以下步骤为您的 npm 包设置并运行测试：
+确保你的包按照你希望的方式运行需要针对你的代码编写测试。你需要一些工具来帮助设置项目来运行单元测试并显示结果。这些工具是 Mocha.js、Chai.js 和 ts-node。 [Mocha.js](https://mochajs.org/) 是一个测试运行程序，[Chai.js](https://www.chaijs.com/) 是一个断言库，可帮助确定你是否从代码中获得了预期的结果，而 [ts-node](https://www.npmjs.com/package/ts-node) 帮助我们在 TypeScript 项目中使用这些工具。请按照以下步骤为你的 npm 包设置并运行测试：
 
 1. 在终端中使用以下命令安装开发人员依赖项：
 
@@ -300,7 +300,7 @@ npm i -D mocha @type/mocha chai @types/chai ts-node
 
 4. 在测试文件夹中创建一个index.spec.ts 文件。
 
-5. 在`index.spec.ts`文件中编写单元测试来测试`index.ts`中的代码。您可以参考示例 npm 包存储库作为示例：https://github.com/snyk-snippets/modern-npm-package/blob/main/tests/index.spec.ts
+5. 在`index.spec.ts`文件中编写单元测试来测试`index.ts`中的代码。你可以参考示例 npm 包存储库作为示例：https://github.com/snyk-snippets/modern-npm-package/blob/main/tests/index.spec.ts
 
 6. 在 `package.json` 文件的脚本部分添加一个`test`属性，并为其指定值 `mocha`。
 
@@ -334,11 +334,11 @@ bc@mbp-snyk modern-npm-package % npm test
 4 passing (22ms)
 ```
 
-### 在管道中进行测试
+#### 在管道中进行测试
 
-现在您已经有了测试来验证代码的行为，您可以在管道中使用它们。这将有助于确保存储库中引入的任何更改都不会破坏您的代码行为。按照以下步骤创建测试工作流程作为项目管道的一部分。
+现在你已经有了测试来验证代码的行为，你可以在管道中使用它们。这将有助于确保存储库中引入的任何更改都不会破坏你的代码行为。按照以下步骤创建测试工作流程作为项目管道的一部分。
 
-1. 为您的存储库创建一个新的 GitHub Action：`https://github.com/<your-account-or-organization>/<your-repo-name>/actions/new`
+1. 为你的存储库创建一个新的 GitHub Action：`https://github.com/<your-account-or-organization>/<your-repo-name>/actions/new`
 2. 将工作流程重命名为`tests.yml`
 3. 在工作流程文件中插入以下 `Snyk Action` 脚本：
 
@@ -369,38 +369,38 @@ jobs:
       - run: npm test
 ```
 
-此 YAML 脚本检查您的最新代码，安装其依赖项，并运行 `npm test` 命令来执行您的测试。它对`node-version`版本字段中列出的每个 Node.js 版本执行此操作，以便您可以确保代码在每个运行时按预期工作。
+此 YAML 脚本检查你的最新代码，安装其依赖项，并运行 `npm test` 命令来执行你的测试。它对`node-version`版本字段中列出的每个 Node.js 版本执行此操作，以便你可以确保代码在每个运行时按预期工作。
 
-您现在已经完成了项目的设置，以便根据 npm 包的代码运行和评估测试。但是，您可能会想“如何在另一个项目中使用我的 npm 包进行测试？”让我们看看接下来如何实现这一目标。
+你现在已经完成了项目的设置，以便根据 npm 包的代码运行和评估测试。但是，你可能会想“如何在另一个项目中使用我的 npm 包进行测试？”让我们看看接下来如何实现这一目标。
 
-### npm包测试
+#### npm包测试
 
-通过单元测试对你的 npm 包的代码有信心是一回事，但确保整个 npm 包的使用体验是另一回事。这涉及将您的 npm 包作为依赖项拉入另一个项目，并查看它的使用是否像您期望的那样顺利。您可以通过以下4种方法进行测试：
+通过单元测试对你的 npm 包的代码有信心是一回事，但确保整个 npm 包的使用体验是另一回事。这涉及将你的 npm 包作为依赖项拉入另一个项目，并查看它的使用是否像你期望的那样顺利。你可以通过以下4种方法进行测试：
 
 1. 通过 `npm pack` 输出安装
 2. 通过相对路径安装
 3. 通过 `npm link`安装
 4. 通过注册表安装（例如 [npmjs.com](https://www.npmjs.com/) 上的 npm 公共注册表）
 
-#### npm pack
+##### npm pack
 
-这种方法将利用`npm pack`命令将您的npm包打包并压缩成一个单独的文件`<package-name>.tgz`。然后，您可以转到要在其中使用该软件包的项目，并通过此文件进行安装。执行以下步骤：
+这种方法将利用`npm pack`命令将你的npm包打包并压缩成一个单独的文件`<package-name>.tgz`。然后，你可以转到要在其中使用该软件包的项目，并通过此文件进行安装。执行以下步骤：
 
-1. 从您的npm包目录中，在终端中运行`npm pack`。注意生成的.tgz文件及其位置。
+1. 从你的npm包目录中，在终端中运行`npm pack`。注意生成的.tgz文件及其位置。
 
 2. 切换到要使用npm软件包的项目目录。示例：`cd /path/to/project`
 
 3. 在客户端项目目录中，运行`npm install /path/to/package.tgz，但请将其替换为第1步生成的.tgz文件所在位置的正确路径。
 
-4. 然后，您可以开始在该客户端项目中使用该软件包来测试功能。
+4. 然后，你可以开始在该客户端项目中使用该软件包来测试功能。
 
-这样做将使您尽可能接近实际生产环境中使用自己的npm软件包。
+这样做将使你尽可能接近实际生产环境中使用自己的npm软件包。
 
-#### npm link
+##### npm link
 
-这种方法将利用`npm link`命令，在尝试在客户端项目中安装时指向您的软件包目录。执行以下步骤：
+这种方法将利用`npm link`命令，在尝试在客户端项目中安装时指向你的软件包目录。执行以下步骤：
 
-1. 从您的npm包目录中，在终端中运行 `npm link`。
+1. 从你的npm包目录中，在终端中运行 `npm link`。
 
 2. 切换到要使用该npm软件包的项目目录。 示例：`cd /path/to/project`
 
@@ -408,19 +408,19 @@ jobs:
 
 当引用代码时，这会将客户端项目指向npm软件包目录。这不会给你完全像生产一样使用你的软件包的体验，但可以确保功能按预期工作。
 
-#### 相对路径
+##### 相对路径
 
-这种方法利用您已经掌握的使用`npm install`命令的知识。它类似于`npm link`，而无需了解像`link`这样的新命令。
+这种方法利用你已经掌握的使用`npm install`命令的知识。它类似于`npm link`，而无需了解像`link`这样的新命令。
 
 1. 从客户端项目目录中，在终端中运行 `npm install /path/to/your/package`。
 
-与`npm link`方法类似，这将允许您在客户端项目中快速测试软件包的功能，但不会给您完全像生产一样使用你的软件包的体验。这是因为它指向完整的软件包源代码目录，而不是您在npm注册表中找到的构建版本。
+与`npm link`方法类似，这将允许你在客户端项目中快速测试软件包的功能，但不会给你完全像生产一样使用你的软件包的体验。这是因为它指向完整的软件包源代码目录，而不是你在npm注册表中找到的构建版本。
 
-#### npm注册表
+##### npm注册表
 
 此方法利用公共（或自己）NPM软件包注册表。它涉及发布软件包并像任何其他NPM软件包一样进行安装。
 
-1. 使用本文前面概述的步骤通过 `npm publish` 命令发布您的NPM软件包
+1. 使用本文前面概述的步骤通过 `npm publish` 命令发布你的NPM软件包
 
 2. 切换到要使用该npm软件包的项目目录。示例：`cd /path/to/project`
 
@@ -428,41 +428,41 @@ jobs:
 
 感谢Mirco Kraenz [@MKraenz](https://twitter.com/MKraenz)创建了一个[Twitter线程](https://twitter.com/MKraenz/status/1559188177696436226?s=20&t=LJg1FbyDLTmiOGAUQh7LmQ)来总结我们在直播过程中学到的东西！
 
-现在，您已经构建了支持现代模块格式的软件包，并通过单元测试和打包测试确保其正常运行。接下来，您需要确保没有安全问题，并防止在您的NPM软件包中引入新问题。
+现在，你已经构建了支持现代模块格式的软件包，并通过单元测试和打包测试确保其正常运行。接下来，你需要确保没有安全问题，并防止在你的NPM软件包中引入新问题。
 
-## 实施安全检查
+### 实施安全检查
 
 跳过这部分的翻译了，如果有兴趣，可以跳到原文了解。
 
-## 自动化版本管理和发布
+### 自动化版本管理和发布
 
-每当您合并主分支中的更改时，您不希望手动更新npm包的版本并每次都发布它。相反，您希望自动化此过程。如果您还记得本文早些时候简单的npm包示例中使用了以下命令来更新npm包的版本然后发布它：
+每当你合并主分支中的更改时，你不希望手动更新npm包的版本并每次都发布它。相反，你希望自动化此过程。如果你还记得本文早些时候简单的npm包示例中使用了以下命令来更新npm包的版本然后发布它：
 
 ```bash
 npm version <major|minor|patch>
 npm publish
 ```
 
-您还希望遵循行业标准语义化版本控制，以便包的消费者理解不同版本变化对注册表所产生的影响。
+你还希望遵循行业标准语义化版本控制，以便包的消费者理解不同版本变化对注册表所产生的影响。
 
-### 什么是语义版本控制？
+#### 什么是语义版本控制？
 
 语义化版本控制规定版本号由三个占位符组成。第一个是主要版本，第二个是次要版本，最后一个是补丁版本。要了解更多关于语义化版本控制、版本管理和锁文件的信息，请阅读[《什么是 Package Lock JSON 以及 Yarn 和 NPM 包如何使用锁文件》](https://snyk.io/blog/what-is-package-lock-json/)。
 
 如果你能够跳过手动操作，并通过 GitHub Actions 设置自动化工作流来处理 npm 包发布，那就太幸运了！因为有一款名为 Semantic Release 的工具可以与 GitHub Actions 集成。帮助自动化这个过程的关键在于，在提交项目变更时使用所谓的[conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)方式。这样可以使自动化工具相应地更新所有内容，并知道如何准备下一个项目发布。
 
-以下步骤将指导您为现代 npm 包进行设置。
+以下步骤将指导你为现代 npm 包进行设置。
 
 1. 在终端中运行：`npm i -D semantic-release`
 2. 在终端中运行：`npx semantic-release-cli setup`
-3. 按照终端提示提供所需的令牌：您需要从 GitHub 获取一个个人访问令牌。
+3. 按照终端提示提供所需的令牌：你需要从 GitHub 获取一个个人访问令牌。
 
-- 请前往 `https://github.com/<your-name-or-github-organization>/<your-repo-name>/settings/secrets/actions/new` 创建一个访问令牌，但请用您相应的存储库详细信息替换它。
+- 请前往 `https://github.com/<your-name-or-github-organization>/<your-repo-name>/settings/secrets/actions/new` 创建一个访问令牌，但请用你相应的存储库详细信息替换它。
 - 在创建此令牌时，请使用以下范围：
 
 ![personal access token](https://snyk.io/_next/image/?url=https%3A%2F%2Fres.cloudinary.com%2Fsnyk%2Fimage%2Fupload%2Fv1663712555%2Fwordpress-sync%2Fblog-create-npm-packages-new-token.png&w=2560&q=75)
 
-4. 您还需要一个来自npm的Automation-type访问令牌，该令牌将仅在CI环境中使用，以便能够绕过您账户的双重身份验证。要创建一个，请访问`https://www.npmjs.com/settings/<your-npm-account>/tokens`。请务必选择“Automation”类型，因为这将用于CI/CD工作流程中。
+4. 你还需要一个来自npm的Automation-type访问令牌，该令牌将仅在CI环境中使用，以便能够绕过你账户的双重身份验证。要创建一个，请访问`https://www.npmjs.com/settings/<your-npm-account>/tokens`。请务必选择“Automation”类型，因为这将用于CI/CD工作流程中。
 
 ![new access token](https://snyk.io/_next/image/?url=https%3A%2F%2Fres.cloudinary.com%2Fsnyk%2Fimage%2Fupload%2Fv1663712548%2Fwordpress-sync%2Fblog-create-npm-packages-token.png&w=2560&q=75)
 
@@ -478,12 +478,11 @@ Provide a GitHub Personal Access Token (create a token at https://github.com/set
 bc@mbp-snyk modern-npm-package %
 ```
 
-5. 将您的npm令牌添加到GitHub存储库中，作为一个存储库秘密。链接：`https://github.com/<your-name-or-organization//settings/secrets/actions/new`。将秘钥的名称设置为`NPM_TOKEN`，并使用在之前步骤中获取的值。
+5. 将你的npm令牌添加到GitHub存储库中，作为一个存储库秘密。链接：`https://github.com/<your-name-or-organization//settings/secrets/actions/new`。将秘钥的名称设置为`NPM_TOKEN`，并使用在之前步骤中获取的值。
 
 ![NPM_TOKEN](https://snyk.io/_next/image/?url=https%3A%2F%2Fres.cloudinary.com%2Fsnyk%2Fimage%2Fupload%2Fv1663712560%2Fwordpress-sync%2Fblog-create-npm-packages-secret.png&w=2560&q=75)
 
-6. 回到您的项目中，打开 `package.json` 文件，并添加一个如下所示的 `releases` 键。如果您的仓库主分支仍然叫做 `master` 而不是 `main`，请相应地更新上述 `branches` 的值。
-1.
+6. 回到你的项目中，打开 `package.json` 文件，并添加一个如下所示的 `releases` 键。如果你的仓库主分支仍然叫做 `master` 而不是 `main`，请相应地更新上述 `branches` 的值。
 
 ```json
 "release": {
@@ -499,7 +498,7 @@ bc@mbp-snyk modern-npm-package %
  }
 ```
 
-8. 通过使用 `semantic-release` npm 脚本进行干运行来测试一切是否正常。将以下命令中的 `NPM_TOKEN=` 和 `GH_TOKEN=` 值设置为您各自的 token 值。然后将完整命令复制并在终端中运行，以查看是否一切都正确运行。进程日志将显示在终端输出中。如果出现任何问题，它们将在此处可见，并提供解决方法的详细信息。
+8. 通过使用 `semantic-release` npm 脚本进行干运行来测试一切是否正常。将以下命令中的 `NPM_TOKEN=` 和 `GH_TOKEN=` 值设置为你各自的 token 值。然后将完整命令复制并在终端中运行，以查看是否一切都正确运行。进程日志将显示在终端输出中。如果出现任何问题，它们将在此处可见，并提供解决方法的详细信息。
 
 9. 确认干运行成功完成后，可以为 GitHub 仓库设置新的 GitHub Action 来处理发布过程。转到 GitHub 上的存储库，并点击“Actions”。
 
@@ -507,7 +506,7 @@ bc@mbp-snyk modern-npm-package %
 
 11. 将工作流重命名为 `release.yml`。
 
-12. 在新工作流文件中添加以下 YAML 脚本。该脚本基本上表示一旦 Snyk 安全检查工作成功完成，则执行发布任务（release job）。发布任务会检出代码、设置 Node.js 环境、安装依赖项，然后使用您的 GitHub 和 npm 令牌运行 semantic release。
+12. 在新工作流文件中添加以下 YAML 脚本。该脚本基本上表示一旦 Snyk 安全检查工作成功完成，则执行发布任务（release job）。发布任务会检出代码、设置 Node.js 环境、安装依赖项，然后使用你的 GitHub 和 npm 令牌运行 semantic release。
 
 ```yaml
 name: Release
@@ -540,15 +539,15 @@ jobs:
         run:npx semantic-release
 ```
 
-13. 提交您的本地更改并将其推送到您的 GitHub 存储库
+13. 提交你的本地更改并将其推送到你的GitHub存储库
 
 可以通过在终端中运行命令 `git commit -am '<your commit message>'`，然后 `git push` 来完成此操作。
 
 也可以使用 VS Code 的[版本控制功能](https://code.visualstudio.com/docs/sourcecontrol/overview)来完成这个步骤。
 
-14. 设置好所有内容后，现在您可以使用[conventional commits](https://www.conventionalcommits.org/zh-hans/v1.0.0/)将更改推送到主分支（或通过合并拉取请求），然后发布工作流程将运行（当然要先进行 Snyk 安全检查）。您可以在示例 [modern-npm-package 存储库工作流程](https://github.com/clarkio/modern-npm-package/actions/runs/2886059078)中查看一个实例。
+14. 设置好所有内容后，现在你可以使用[conventional commits](https://www.conventionalcommits.org/zh-hans/v1.0.0/)将更改推送到主分支（或通过合并拉取请求），然后发布工作流程将运行（当然要先进行 Snyk 安全检查）。你可以在示例 [modern-npm-package 存储库工作流程](https://github.com/clarkio/modern-npm-package/actions/runs/2886059078)中查看一个实例。
 
-## Continuous security monitoring with Snyk via GitHub
+## 通过GitHub使用Snyk进行持续安全监控
 
 跳过这部分的翻译了，如果有兴趣，可以跳到原文了解。
 
