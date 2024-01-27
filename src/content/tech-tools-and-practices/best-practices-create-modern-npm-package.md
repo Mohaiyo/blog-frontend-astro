@@ -74,16 +74,34 @@ Logged in as clarkio on https://registry.npmjs.org/.
 
 一旦你拥有一个 npm 项目和一个 npm 帐户，你就可以将你的 npm 包发布到[公共和官方 npmjs 注册表](https://npmjs.org/).使其可供其他人使用。在执行之前，你可以按照以下步骤检查将要发布的内容，然后运行实际的发布过程：
 
-1. 在终端中，运行 `npx npm-packlist` 以查看将包含在包的发布版本中的内容。
+1. 在终端中，运行 `npm pack --dry-run` 以查看将包含在包的发布版本中的内容。
 
 这可确保你不会丢失包正常运行所需的任何源代码文件。确保你不会意外向公众泄露敏感信息（例如带有数据库凭据或 API 密钥的本地配置文件）也是一个很好的做法。
 
 ```bash
-> npx npm-packlist
-LICENSE
-index.js
-package.json
-README.md
+> npm pack --dry-run
+npm notice 
+npm notice 📦  @clarkio/simple-npm-package@0.0.1
+npm notice === Tarball Contents === 
+npm notice 955B  README.md                   
+npm notice 186B  lib/cjs/index.js            
+npm notice 124B  lib/cjs/types/index.d.ts    
+npm notice 210B  lib/cjs/types/index.d.ts.map
+npm notice 81B   lib/esm/index.mjs           
+npm notice 124B  lib/esm/types/index.d.ts    
+npm notice 210B  lib/esm/types/index.d.ts.map
+npm notice 1.5kB package.json                
+npm notice === Tarball Details === 
+npm notice name:          @clarkio/simple-npm-package                      
+npm notice version:       0.0.0-development                          
+npm notice filename:      @clarkio/simple-npm-package-0.0.1.tgz
+npm notice package size:  1.6 kB                                     
+npm notice unpacked size: 3.4 kB                                     
+npm notice shasum:        0127ab667a6f148b7e941530b42e341e5f503237   
+npm notice integrity:     sha512-R48hx0v38ECXD[...]7nsjRQT/jgarg==   
+npm notice total files:   8                                          
+npm notice 
+@clarkio/simple-npm-package-0.0.1.tgz
 ```
 
 2. 在终端中，运行 `npm publish --dry-run` 以查看实际运行该命令时会执行什么操作。
