@@ -63,7 +63,7 @@
                 <ion-icon name="eye-outline"></ion-icon>
               </div>
 
-              <img :src="pItem.cover.src" :alt="pItem.title" loading="lazy" />
+              <img :src="pItem.cover.src" :alt="pItem.title" class="aspect-video" loading="lazy" />
             </figure>
 
             <h3 class="project-title">{{ pItem.title }}</h3>
@@ -79,7 +79,7 @@
 <script setup lang="ts">
   import { ref } from 'vue'
   import pj1 from '@assets/project-1.png'
-  // import pj2 from '@assets/project-2.png'
+  import pj2 from '@assets/project-2.png'
   // import pj3 from '@assets/project-3.jpg'
   // import pj4 from '@assets/project-4.png'
   // import pj5 from '@assets/project-5.png'
@@ -88,7 +88,7 @@
   // import pj8 from '@assets/project-8.jpg'
   // import pj9 from '@assets/project-9.png'
 
-  type SelectLabelValue = 'all' | 'webDesigin' | 'applications' | 'webDevelopment'
+  type SelectLabelValue = 'all' | 'openSource' | 'applications' | 'webDevelopment'
   type SelectDataItem = {
     label: string
     value: SelectLabelValue
@@ -110,8 +110,8 @@
       value: 'webDevelopment'
     },
     {
-      label: 'Web设计',
-      value: 'webDesigin'
+      label: '开源项目',
+      value: 'openSource'
     }
   ]
   const selectFormatter = (val: SelectLabelValue) => {
@@ -132,6 +132,12 @@
       title: '个人博客',
       cate: 'webDevelopment',
       url: 'https://tech-connection.netlify.app/'
+    },
+    {
+      cover: pj2,
+      title: 'Alfred translate hub',
+      cate: 'openSource',
+      url: 'https://github.com/mohaiyo/translate-hub'
     }
     // {
     //   cover: pj2,
