@@ -4,10 +4,10 @@ pubDate: 2024-03-14
 description: 'Sequelize数据只读副本'
 author: Wayne.Liang
 image:
-  cover: '../assets/db-and-storage/sequelize-cli.png'
+  cover: '../assets/db-and-storage/sequelize-read-replication.png'
   alt: 'Read Replication'
 category: '数据库与存储'
-tags: ['Sequelize', 'Sequelize cli']
+tags: ['Sequelize']
 ---
 
 # Read Replication
