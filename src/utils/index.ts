@@ -11,6 +11,7 @@ export const getFormattedDate = (date: string) =>
 
 export const fetchAllPost = async () => {
   const postsEntriesPromise = getCollection('posts')
+
   const frontEndDevEntriesPromise = getCollection('front-end-dev')
   const backEndDevEntriesPromise = getCollection('back-end-dev')
   const dbAndStorageEntriesPromise = getCollection('db-and-storage')

@@ -34,8 +34,7 @@ document.addEventListener('astro:page-load', () => {
 
   const handleScroll = () => {
     // Do something on scroll
-    const scrollTotal = rootElement.scrollHeight - rootElement.clientHeight
-    if (rootElement.scrollTop / scrollTotal > 0.3) {
+    if (rootElement.scrollTop  >= 1000) {
       // Show button
       backToTopEle?.classList.add('show')
     } else {
