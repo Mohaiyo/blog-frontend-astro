@@ -10,7 +10,9 @@ category: '数据库与存储'
 tags: ['Sequelize']
 ---
 
-# Sequelize Eager Loading - filter on junction table
+## Contents
+
+## Sequelize Eager Loading - filter on junction table
 
 每当包含来自多对多关系的模型时，您还可以对连接表应用过滤器。这是通过在 include 的 through 选项中应用的 where 选项完成的。例如：
 

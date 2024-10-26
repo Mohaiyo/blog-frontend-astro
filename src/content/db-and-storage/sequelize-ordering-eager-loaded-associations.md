@@ -10,7 +10,9 @@ category: '数据库与存储'
 tags: ['Sequelize']
 ---
 
-# Sequelize Eager Loading - ordering eager loaded associations
+## Contents
+
+## Sequelize Eager Loading - ordering eager loaded associations
 
 对于多对多关系，您还可以按连接表中的属性进行排序。例如，假设我们在 Division 和 Department 之间有一个多对多关系，其连接模型为 DepartmentDivision，您可以执行以下操作：。例如：
 

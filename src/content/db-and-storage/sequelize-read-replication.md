@@ -10,7 +10,9 @@ category: '数据库与存储'
 tags: ['Sequelize']
 ---
 
-# Read Replication
+## Contents
+
+## Read Replication
 
 Sequelize 支持数据库只读副本，即当您想要执行 SELECT 查询时可以连接到多个服务器。当您进行读复制时，您指定一台或多台服务器作为只读副本，一台服务器充当主写入，处理所有写入和更新并将它们传播到副本（请注意，实际的复制过程不是由 Sequelize 处理，而是应由数据库后端设置）。
 

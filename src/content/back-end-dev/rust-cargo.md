@@ -10,7 +10,7 @@ category: '后端开发'
 tags: ['Rust']
 ---
 
-## Content
+## Contents
 
 ## Cargo作为Rust构建系统和包管理器，我们可以使用Cargo完成什么操作？
 
