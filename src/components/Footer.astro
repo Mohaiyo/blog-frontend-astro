@@ -1,10 +1,12 @@
 ---
-import Social from './Social.astro'
+const fullYear = new Date().getFullYear()
 ---
 
-<footer class="footer">
-  <div class="footer-container">
-    <div class="text-center text-sm text-black dark:text-white">Copyright &copy;2023 TechConnect. All right reserved</div>
+<footer class='footer'>
+  <div class='footer-container'>
+    <div class='text-center text-sm text-black dark:text-white'
+      >Copyright &copy; {fullYear} TechConnect. All right reserved</div
+    >
   </div>
 </footer>
 

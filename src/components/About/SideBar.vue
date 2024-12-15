@@ -125,7 +125,7 @@
       }
     }
     .info_more-btn {
-      @apply absolute -right-4 -top-4 z-[1] rounded-2xl rounded-br-none rounded-tl-none bg-gradient-to-br via-transparent via-50% p-2 text-sm leading-none text-stone-500 shadow shadow-stone-100 transition-all dark:from-stone-700 dark:text-yellow-500 dark:shadow-stone-700 sm:-right-[30px] sm:-top-[30px] sm:px-4 sm:py-[10px] xl:hidden;
+      @apply absolute -right-4 -top-4 z-[1] rounded-2xl rounded-br-none rounded-tl-none bg-gradient-to-br via-transparent via-50% p-2 text-sm leading-none text-stone-500 shadow shadow-sky-100 transition-all dark:from-stone-700 dark:text-yellow-500 dark:shadow-stone-700 sm:-right-[30px] sm:-top-[30px] sm:px-4 sm:py-[10px] xl:hidden;
       span {
         @apply hidden sm:block sm:text-xs;
       }
@@ -135,12 +135,12 @@
     }
     .info_more-btn:hover,
     .info_more-btn:focus {
-      @apply bg-gradient-to-br from-stone-500 to-transparent dark:from-yellow-300;
+      @apply bg-gradient-to-br from-blue-500 to-transparent dark:from-yellow-300;
     }
     .info_more-btn:hover::before,
     .info_more-btn:focus::before {
-      background: linear-gradient(135deg, hsl(45deg 100% 70.98% / 25.1%) 0%, hsla(35, 100%, 68%, 0) 59.86%),
-        hsl(240, 2%, 13%);
+      background: linear-gradient(135deg, hsla(199, 100%, 71%, 0.251) 0%, hsla(216, 100%, 68%, 0) 59.86%),
+        hsla(240, 8%, 64%, 0.609);
       @apply bg-gradient-to-br from-amber-300 via-amber-200 via-60% to-white  dark:from-neutral-600 dark:via-stone-800 dark:to-stone-900;
     }
     .info_more-btn::before {

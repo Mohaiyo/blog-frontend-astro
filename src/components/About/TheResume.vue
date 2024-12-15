@@ -19,14 +19,14 @@
 
           <span>2010.09 — 2014.06</span>
 
-          <p class="timeline-text"> 就读于北京科技大学机械工程学院，主修机械工程以及自动化. </p>
+          <p class="timeline-text"> 就读于北京科技大学机械工程学院，主修机械工程以及自动化。 </p>
         </li>
         <li class="timeline-item">
-          <h4 class="h4 timeline-item-title">华南理工大学(交换生)</h4>
+          <h4 class="h4 timeline-item-title">广西北流市高级中学</h4>
 
-          <span>2012.09 — 2013.01</span>
+          <span>2007.09 — 2010.06</span>
 
-          <p class="timeline-text"> 交换生。 </p>
+          <p class="timeline-text"> 理科生。 </p>
         </li>
       </ol>
     </section>
@@ -391,7 +391,7 @@
     }
   }
   .work-title {
-    @apply mb-2 mt-2 indent-2 before:absolute before:left-0 before:mr-1 before:h-4 before:w-1 before:translate-y-0.5 before:rounded-sm before:bg-amber-300 before:content-[''] dark:before:bg-white;
+    @apply mb-2 mt-2 indent-2 before:absolute before:left-0 before:mr-1 before:h-4 md:before:h-5 before:w-1 before:translate-y-0.5 before:rounded-sm before:bg-amber-300 before:content-[''] dark:before:bg-white;
   }
   .article-title {
     @apply relative pb-2 sm:pb-4 sm:font-bold md:pb-5;

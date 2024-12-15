@@ -30,13 +30,13 @@ const cateogryItem = categories.find((item) => item.title === frontmatter.catego
 
 <Layout title={frontmatter.title}>
   <Prose>
-    <div class="text-center not-prose">
+    <div class="not-prose">
       <LabelCom theme={cateogryItem?.color}>{frontmatter.category}</LabelCom>
     </div>
 
     <h1 class="post__title"> {frontmatter.title}</h1>
     <p class="post__descr"><b>{frontmatter.description}</b></p>
-    <div class="not-prose text-gray-500 mb-5 mt-3 flex justify-center space-x-3">
+    <div class="not-prose text-gray-500 mb-5 mt-3 flex justify space-x-3">
       <div class="flex items-center gap-3">
         <div class="relative h-10 w-10 flex-shrink-0">
           <a href="/about" target="_blank">
@@ -44,7 +44,7 @@ const cateogryItem = categories.find((item) => item.title === frontmatter.catego
           </a>
         </div>
 
-        <div >
+        <div>
           <div class="text-gray-800 dark:text-white"> <a href="/about" target="_blank">{frontmatter.author}</a></div>
           <div class="flex items-center space-x-2 text-sm">
             <time class="text-gray-500 dark:text-white" datetime={frontmatter.pubDate.toDateString()}>
@@ -82,10 +82,10 @@ const cateogryItem = categories.find((item) => item.title === frontmatter.catego
 <style scoped>
   .post {
     &__title {
-      @apply dark:text-white mb-3 mt-2 text-center text-3xl font-semibold tracking-tight lg:text-4xl lg:leading-snug;
+      @apply dark:text-white mb-3 mt-2 text-xl font-semibold tracking-tight lg:text-3xl lg:leading-snug;
     }
     &__descr {
-      @apply indent-8 font-light text-sm xl:text-base leading-relaxed text-neutral-500 dark:text-white;
+      @apply font-light text-sm xl:text-base leading-relaxed text-neutral-500 dark:text-white;
     }
     &__meta-info {
       @apply mb-2 flex items-center gap-1 text-sm text-gray-400 dark:text-white;
@@ -113,7 +113,7 @@ const cateogryItem = categories.find((item) => item.title === frontmatter.catego
     &__tag {
       margin: 4px;
       border-radius: 999px;
-      @apply px-4 py-1 text-sm bg-amber-500 hover:bg-amber-600 uppercase cursor-pointer;
+      @apply px-4 py-1 text-sm bg-amber-500 hover:bg-amber-600 capitalize cursor-pointer;
     }
     &__divider {
       width: 1px;

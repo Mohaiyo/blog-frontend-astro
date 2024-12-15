@@ -58,7 +58,7 @@
     .navbar-link {
       @apply px-2 py-5 text-xs text-gray-400 transition-colors sm:text-sm md:text-base lg:font-medium;
       &.active {
-        @apply text-pink-700 dark:text-yellow-400;
+        @apply text-amber-600 dark:text-amber-400;
       }
     }
   }
