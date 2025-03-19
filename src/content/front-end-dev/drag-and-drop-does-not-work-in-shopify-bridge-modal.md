@@ -4,7 +4,7 @@ pubDate: 2025-03-19
 description: '记录可拖拽的复杂交互在Shopify React Bridge Modal中无法生效的问题'
 author: 'Wayne.Liang'
 image:
-  cover: '../assets/front-end-dev/dnd-kit-not-working-in-shopify-app-bridge-modal-cover.jpg'
+  cover: '../assets/front-end-dev/dnd-kit-not-working-in-shopify-app-bridge-modal-cover.png'
   alt: 'islands architecture'
 category: '前端开发'
 tags: ['Shopify', 'Remix']
