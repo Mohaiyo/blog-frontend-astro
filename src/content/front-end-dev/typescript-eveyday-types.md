@@ -1,7 +1,7 @@
 ---
 title: 'TypeScript基础之--日常类型'
 pubDate: 2025-06-11
-description: '介绍 JavaScript 代码中最常见的几种值类型，并解释如何在 TypeScript 中描述这些类型'
+description: '介绍 TypeScript 代码中最常见的几种值类型，并解释如何在 TypeScript 中描述这些类型'
 author: 'Wayne.Liang'
 image:
   cover: '../assets/front-end-dev/typescript-everyday-types.png'
