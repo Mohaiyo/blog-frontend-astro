@@ -12,7 +12,8 @@ tags: ['TypeScript']
 
 ## Contents
 
-本文所有的代码均是基于TypeScript V4.9.5版本进行实验
+## 说明
+本文所有的代码均是基于TypeScript V4.9.5版本进行实验,自 TypeScript 5.0 起支持阶段 3 装饰器。参见：[TypeScript 5.0 中的装饰器](https://devblogs.microsoft.com/typescript/announcing-typescript-5-0/#decorators)
 
 ## Class Decorator
 
