@@ -13,6 +13,7 @@ tags: ['TypeScript']
 ## Contents
 
 ## 说明
+
 本文所有的代码均是基于TypeScript V4.9.5版本进行实验,自 TypeScript 5.0 起支持阶段 3 装饰器。参见：[TypeScript 5.0 中的装饰器](https://devblogs.microsoft.com/typescript/announcing-typescript-5-0/#decorators)
 
 ## Class Decorator
@@ -183,22 +184,22 @@ product.title = 'New Title' // TypeError: Cannot assign to read only property 't
 - 函数参数列表中参数的序号。
 
 ```typescript
-import "reflect-metadata";
+import 'reflect-metadata'
 
-const requiredMetadataKey = Symbol("required");
- 
+const requiredMetadataKey = Symbol('required')
+
 function required(target: Object, propertyKey: string | symbol, parameterIndex: number) {
-  let existingRequiredParameters: number[] = Reflect.getOwnMetadata(requiredMetadataKey, target, propertyKey) || [];
-  existingRequiredParameters.push(parameterIndex);
+  let existingRequiredParameters: number[] = Reflect.getOwnMetadata(requiredMetadataKey, target, propertyKey) || []
+  existingRequiredParameters.push(parameterIndex)
   console.log('existingRequiredParameters', existingRequiredParameters)
-  Reflect.defineMetadata( requiredMetadataKey, existingRequiredParameters, target, propertyKey);
+  Reflect.defineMetadata(requiredMetadataKey, existingRequiredParameters, target, propertyKey)
 }
- 
+
 function validate(target: any, propertyName: string, descriptor: TypedPropertyDescriptor<Function>) {
-  let method = descriptor.value!;
- console.log('method', method)
+  let method = descriptor.value!
+  console.log('method', method)
   descriptor.value = function () {
-    let requiredParameters: number[] = Reflect.getOwnMetadata(requiredMetadataKey, target, propertyName);
+    let requiredParameters: number[] = Reflect.getOwnMetadata(requiredMetadataKey, target, propertyName)
     if (requiredParameters) {
       for (let parameterIndex of requiredParameters) {
         // arguments is an array-like object
@@ -206,29 +207,29 @@ function validate(target: any, propertyName: string, descriptor: TypedPropertyDe
         console.log('parameterIndex', parameterIndex)
         console.log('arguments[parameterIndex]', arguments[parameterIndex])
         if (parameterIndex >= arguments.length || arguments[parameterIndex] === undefined) {
-          throw new Error("Missing required argument.");
+          throw new Error('Missing required argument.')
         }
       }
     }
-    return method.apply(this, arguments);
-  };
+    return method.apply(this, arguments)
+  }
 }
 
 class BugReport {
-  type = "report";
-  title: string;
- 
+  type = 'report'
+  title: string
+
   constructor(t: string) {
-    this.title = t;
+    this.title = t
   }
- 
+
   @validate
   print(@required verbose: boolean, @required name?: string) {
     if (verbose) {
       console.log('name', name)
-      return `type: ${this.type}\ntitle: ${this.title}`;
+      return `type: ${this.type}\ntitle: ${this.title}`
     } else {
-     return this.title; 
+      return this.title
     }
   }
 }
@@ -236,8 +237,243 @@ class BugReport {
 const bugReport = new BugReport('Bug')
 console.log(bugReport.print(false))
 console.log(bugReport.print(true))
-
 ```
+
+## 基于TypeScript 5.0版本的用处示例
+
+### 通过返回兼容的值替换装饰的实体
+
+```typescript
+class Person {
+  name: string
+  constructor(name: string) {
+    this.name = name
+  }
+
+  @loggedMethod
+  greet() {
+    console.log(`Hello, my name is ${this.name}.`)
+  }
+}
+
+function loggedMethod(originalMethod: Function, context: ClassMethodDecoratorContext<unknown>): void | (() => void) {
+  const methodName = String(context.name)
+  function replacementMethod(this: any, ...args: any[]) {
+    console.log(`LOG: Entering method '${methodName}'.`)
+    const result = originalMethod.call(this, ...args)
+    console.log(`LOG: Exiting method '${methodName}'.`)
+    return result
+  }
+  return replacementMethod
+}
+
+const person = new Person('Ron')
+person.greet()
+// LOG: Entering method 'greet'.
+// Hello, my name is Ron.
+// LOG: Exiting method 'greet'.
+```
+
+### 向其他人公开对装饰实体的访问权限
+
+```typescript
+let acc
+function exposeAccess(_value, { access }: ClassFieldDecoratorContext<Color, string>) {
+  acc = access
+}
+
+class Color {
+  @exposeAccess
+  name = 'green'
+}
+
+const green = new Color()
+
+console.log(acc?.get(green))
+acc?.set(green, 'red')
+console.log(green.name)
+// green
+// red
+```
+
+### 处理装饰实体及其容器
+
+```typescript
+function collect(_value, { name, addInitializer }) {
+  addInitializer(function () {
+    // (A)
+    if (!this.collectedMethodKeys) {
+      this.collectedMethodKeys = new Set()
+    }
+    this.collectedMethodKeys.add(name)
+  })
+}
+
+class C {
+  @collect
+  toString() {}
+  @collect
+  [Symbol.iterator]() {}
+}
+const inst = new C()
+
+inst.collectedMethodKeys === new Set(['toString', Symbol.iterator])
+console.log('collectedMethodKeys has toString', inst.collectedMethodKeys.has('toString'))
+console.log('collectedMethodKeys has Symbol.iterator', inst.collectedMethodKeys.has(Symbol.iterator))
+// collectedMethodKeys has toString true
+// collectedMethodKeys has Symbol.iterator true
+```
+
+### How are decorators executed?
+
+- Evaluation
+- Invocation
+- Application
+
+```typescript
+function decorate(str) {
+  console.log(`EVALUATE @decorate(): ${str}`)
+  return () => console.log(`APPLY @decorate(): ${str}`) // (A)
+}
+function log(str) {
+  console.log(str)
+  return str
+}
+
+@decorate('class')
+class TheClass {
+  @decorate('static field')
+  static staticField = log('static field value');
+
+  @decorate('prototype method')
+  [log('computed key')]() {}
+
+  @decorate('instance field')
+  instanceField = log('instance field value')
+  // This initializer only runs if we instantiate the class
+}
+
+// Output:
+// EVALUATE @decorate(): class
+// EVALUATE @decorate(): static field
+// EVALUATE @decorate(): prototype method
+// computed key
+// EVALUATE @decorate(): instance field
+// APPLY @decorate(): prototype method
+// APPLY @decorate(): static field
+// APPLY @decorate(): instance field
+// APPLY @decorate(): class
+// static field value
+```
+
+Function decorate is invoked whenever the expression decorate() after the @ symbol is evaluated. In line A, it returns the actual decorator function, which is applied later.
+
+### When do decorator initializers run?
+
+When a decorator initializer runs, depends on the kind of decorator:
+
+- Class decorator initializers run after the class is fully defined and all static fields were initialized.
+- The initializers of non-static class element decorators run during instantiation, before instance fields are initialized.
+- The initializers of static class element decorators run during class definition, before static fields are defined but after other all other class elements were defined.
+
+```typescript
+/ We wait until after instantiation before we log steps,
+// so that we can compare the value of `this` with the instance.
+const steps = [];
+function push(msg, _this) {
+  steps.push({msg, _this});
+}
+function pushStr(str) {
+  steps.push(str);
+}
+
+function init(_value, {name, addInitializer}) {
+  pushStr(`@init ${name}`);
+  if (addInitializer) {
+    addInitializer(function () {
+      push(`DECORATOR INITIALIZER ${name}`, this);
+    });
+  }
+}
+
+@init class TheClass {
+  //--- Static ---
+
+  static {
+    pushStr('static block');
+  }
+
+  @init static staticMethod() {}
+  @init static accessor staticAcc = pushStr('staticAcc');
+  @init static staticField = pushStr('staticField');
+
+  //--- Non-static ---
+
+  @init prototypeMethod() {}
+  @init accessor instanceAcc = pushStr('instanceAcc');
+  @init instanceField = pushStr('instanceField');
+
+  constructor() {
+    pushStr('constructor');
+  }
+}
+
+pushStr('===== Instantiation =====');
+const inst = new TheClass();
+
+for (const step of steps) {
+  if (typeof step === 'string') {
+    console.log(step);
+    continue;
+  }
+  let thisDesc = '???';
+  if (step._this === TheClass) {
+    thisDesc = TheClass.name;
+  } else if (step._this === inst) {
+    thisDesc = 'inst';
+  } else if (step._this === undefined) {
+    thisDesc = 'undefined';
+  }
+  console.log(`${step.msg} (this===${thisDesc})`);
+}
+
+// Output:
+// @init staticMethod
+// @init staticAcc
+// @init prototypeMethod
+// @init instanceAcc
+// @init staticField
+// @init instanceField
+// @init TheClass
+// DECORATOR INITIALIZER staticMethod (this===TheClass)
+// DECORATOR INITIALIZER staticAcc (this===TheClass)
+// static block
+// staticAcc
+// staticField
+// DECORATOR INITIALIZER TheClass (this===TheClass)
+// ===== Instantiation =====
+// DECORATOR INITIALIZER prototypeMethod (this===inst)
+// DECORATOR INITIALIZER instanceAcc (this===inst)
+// instanceAcc
+// instanceField
+// constructor
+```
+
+## 公开来自装饰器的数据的技术
+
+### 将公开的数据存储在周围的作用域中
+
+缺点是，如果装饰器来自另外一个模块，将不起作用
+
+###  通过工厂函数管理公开的数据
+
+创建一个工厂函数，将集合以及收集的方法通过工厂函数返回
+
+### 通过类管理公开的数据
+
+类内有两个成员:
+- 一个classes,包含收集类的集合
+- 一个install函数，类的装饰器
 
 ## 学习链接
 
