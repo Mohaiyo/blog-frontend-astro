@@ -82,6 +82,8 @@ System:
 
 详细文档，参考 [Migrate from v4 从 v4 迁移](https://cli.vuejs.org/migrations/migrate-from-v4.html)
 
+记得移除 `vue.config.js` 中的`vue-loader`插件，升级以后不再需要。如果重新恢复使用会导致热重载不更新的问题。
+
 ## Step 2
 
 项目中有几个报错：
@@ -148,9 +150,10 @@ npm install
 ```
 
 项目图标文件转换错误的文件记录,主要是使用的图标上el-icon-setting带上了额外的类名如font-14，导致的转换失败，修复该问题即可
-
-- /sponsoredBrandManagement/modelManagement/detail/components/CampaignList.vue
-- /amazon-ad-admin-web/src/views/operatingData/realTimeOrder/index
+```bash
+/sponsoredBrandManagement/modelManagement/detail/components/CampaignList.vue
+/amazon-ad-admin-web/src/views/operatingData/realTimeOrder/index
+```
 
 ## Step5 报错处理
 
