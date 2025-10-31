@@ -150,6 +150,7 @@ npm install
 ```
 
 项目图标文件转换错误的文件记录,主要是使用的图标上el-icon-setting带上了额外的类名如font-14，导致的转换失败，修复该问题即可
+
 ```bash
 /sponsoredBrandManagement/modelManagement/detail/components/CampaignList.vue
 /amazon-ad-admin-web/src/views/operatingData/realTimeOrder/index
@@ -345,7 +346,6 @@ data中的图标改为通过shallowRef使用
 
 date-fns-tz 的引入防范从 `utcToZonedTime` 改为 `toZonedTime`
 
-
 ### dialog中部分样式不生效
 
 历史使用了`.el-dialog__wrapper`作为自定义样式类，改为`.el-modal-dialog`
@@ -370,3 +370,33 @@ lintfix": "eslint  --fix ./src --ext .js,.vue"
 ## Step8 页面样式视觉回归测试
 
 检测需要迁移的页面的样式问题，且同步修复，升级完成
+
+## 上线后发现的问题记录
+
+### 项目当动态路由缺失导致的路由循环栈溢出
+
+当用户动态路由一个都没有添加成功或者匹配上的时候错误判断导致的重复执行导致栈溢出问题。增加了一个错误reject提示
+
+```javascript
+if (accessedRoutes.length === 0) {
+  return Promise.reject(new Error('还未配置任何菜单, 请联系管理员'))
+}
+```
+
+### 上线后开启keep-alive导致的详情页缓存问题
+
+当使用keep-alive时，即时详情页如page/:no,没有include在keep alive组件中。也会导致页面先打开/page/a,再打开/page/b导致page/b渲染的还是page/a的内容的路由陷阱问题。解决方案如下:
+
+```Vue
+<transition name="fade-transform" mode="out-in">
+  <keep-alive :include="cachedViews" max="20">
+    <component :is="Component" :key="$route.fullPath" />
+  </keep-alive>
+</transition>
+```
+
+确保详情页的 component的key值唯一。
+
+## 总结
+
+47+页面，一共迁移时间大约在6天左右，其中有一天包含了视觉回归测试。主要迁移工作量在5天左右。至此，此项目vue2迁移vue3实战完成。上线后包括页面响应速度以及流畅度都得到了大幅提升。与此同时，集成了ts,后端联调接口现在支持函通过openapi2ts脚本生成，后续开发可以使用ts + composition的语法开发，后续代码质量更有保障和同时项目维护更加高效稳定。开发体验上也得到的大幅的提升。
