@@ -74,6 +74,96 @@ System:
     @vue/cli: 5.0.9
 ```
 
+## 包依赖
+
+```json
+{
+  "dependencies": {
+    "@sentry/tracing": "^6.14.3",
+    "@sentry/vue": "^6.14.3",
+    "ali-oss": "^6.16.0",
+    "axios": "^0.19.0",
+    "clipboard": "^2.0.6",
+    "core-js": "^3.1.2",
+    "cross-env": "^7.0.3",
+    "crypto-js": "^4.0.0",
+    "date-fns": "^2.6.0",
+    "date-fns-tz": "^2.0.0",
+    "dayjs": "^1.11.7",
+    "diff": "^5.0.0",
+    "docx": "^8.5.0",
+    "echarts": "^5.5.1",
+    "element-ui": "2.15.13",
+    "file-saver": "^2.0.2",
+    "highlight.js": "^10.1.1",
+    "html2canvas": "^1.4.1",
+    "js-cookie": "^2.2.1",
+    "jspdf": "^2.5.1",
+    "normalize.css": "^8.0.1",
+    "nprogress": "^0.2.0",
+    "path": "^0.12.7",
+    "path-to-regexp": "^3.1.0",
+    "register-service-worker": "^1.6.2",
+    "resize-detector": "^0.2.2",
+    "screenfull": "^5.0.2",
+    "vue": "^2.6.10",
+    "vue-count-to": "^1.0.13",
+    "vue-highlight-words": "^1.2.0",
+    "vue-i18n": "^8.22.1",
+    "vue-json-pretty": "^1.7.1",
+    "vue-router": "^3.0.6",
+    "vuex": "^3.0.1",
+    "vxe-table": "^2.9.25",
+    "xe-utils": "^2.7.15",
+    "xgplayer": "^3.0.7",
+    "xlsx": "^0.16.7",
+    "xlsx-style": "^0.8.13"
+  },
+  "devDependencies": {
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/register": "^7.6.2",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@vue/cli-plugin-babel": "^4.0.0",
+    "@vue/cli-plugin-eslint": "^4.0.0",
+    "@vue/cli-plugin-pwa": "^4.0.0",
+    "@vue/cli-plugin-unit-jest": "^4.0.0",
+    "@vue/cli-service": "^4.0.0",
+    "@vue/eslint-config-prettier": "^5.0.0",
+    "@vue/test-utils": "1.0.0-beta.29",
+    "auto-changelog": "^2.0.0",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-component": "^1.1.1",
+    "babel-plugin-import": "^1.13.1",
+    "body-parser": "^1.19.0",
+    "caniuse-lite": "^1.0.30001311",
+    "chalk": "^2.4.2",
+    "chokidar": "^3.2.2",
+    "commitizen": "^4.1.2",
+    "connect": "^3.7.0",
+    "cz-conventional-changelog": "^3.2.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "eslint-plugin-vue-libs": "^4.0.0",
+    "husky": "^3.0.9",
+    "lint-staged": "^9.4.2",
+    "mockjs": "^1.1.0",
+    "patch-package": "^6.4.7",
+    "prettier": "^1.18.2",
+    "runjs": "^4.4.2",
+    "sass": "^1.19.0",
+    "sass-loader": "^8.0.0",
+    "script-ext-html-webpack-plugin": "^2.1.4",
+    "serve-static": "^1.14.1",
+    "svg-sprite-loader": "^4.1.6",
+    "vue-cli-plugin-element": "^1.0.1",
+    "vue-template-compiler": "^2.6.10"
+  }
+}
+```
+
+
 ## Step 1
 
 更新 @vue/cli相关的依赖 使用 `vue upgrade --registry=https://registry.npmjs.org/`进行升级，同时也是用了 `npx npm-check-updates -i --format group` 升级了 `minor` 版本的依赖包。
@@ -370,6 +460,15 @@ lintfix": "eslint  --fix ./src --ext .js,.vue"
 ## Step8 页面样式视觉回归测试
 
 检测需要迁移的页面的样式问题，且同步修复，升级完成
+
+## Step9 集成typescript + openapi
+
+使用 `vue add typescript` 添加typescript相关依赖。
+
+集成 `typescript-eslint` 增加eslint对 ts的支持。
+
+增加 `@types/webpack-env` 修复 ts环境下不支持process.env的报错
+
 
 ## 上线后发现的问题记录
 
