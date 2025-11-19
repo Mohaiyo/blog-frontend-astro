@@ -465,15 +465,326 @@ for (const step of steps) {
 
 缺点是，如果装饰器来自另外一个模块，将不起作用
 
-###  通过工厂函数管理公开的数据
+### 通过工厂函数管理公开的数据
 
 创建一个工厂函数，将集合以及收集的方法通过工厂函数返回
 
 ### 通过类管理公开的数据
 
 类内有两个成员:
+
 - 一个classes,包含收集类的集合
 - 一个install函数，类的装饰器
+
+## Class decorators 类装饰器
+
+### 收集实例
+
+```javascript
+class InstanceCollector {
+  instances = new Set()
+  install = (value, { kind }) => {
+    if (kind === 'class') {
+      const _this = this
+      return function (...args) {
+        // (A)
+        const inst = new value(...args) // (B)
+        _this.instances.add(inst)
+        return inst
+      }
+    }
+  }
+}
+
+const collector = new InstanceCollector()
+
+@collector.install
+class MyClass {}
+
+const inst1 = new MyClass()
+const inst2 = new MyClass()
+const inst3 = new MyClass()
+
+assert.deepEqual(collector.instances, new Set([inst1, inst2, inst3]))
+```
+
+### Making sure that instanceof works
+
+#### Enabling instanceof via .prototype
+
+启用 instanceof 的一种方法是将包装函数的 .prototype 设置为包装值的 .prototype（A 行）：
+
+```javascript
+function countInstances(value) {
+  const _this = this
+  let instanceCount = 0
+  // The wrapper must be new-callable
+  const wrapper = function (...args) {
+    instanceCount++
+    const instance = new value(...args)
+    // Change the instance
+    instance.count = instanceCount
+    return instance
+  }
+  wrapper.prototype = value.prototype // (A)
+  return wrapper
+}
+
+@countInstances
+class MyClass {}
+
+const inst1 = new MyClass()
+assert.ok(inst1 instanceof MyClass)
+assert.equal(inst1.count, 1)
+
+const inst2 = new MyClass()
+assert.ok(inst2 instanceof MyClass)
+assert.equal(inst2.count, 2)
+```
+
+#### Enabling instanceof via Symbol.hasInstance
+
+启用实例的另一种方法是给包装函数一个方法，其秘诀在于 Symbol.hasInstance（行 A）：
+
+```javascript
+function countInstances(value) {
+  const _this = this
+  let instanceCount = 0
+  // The wrapper must be new-callable
+  const wrapper = function (...args) {
+    instanceCount++
+    const instance = new value(...args)
+    // Change the instance
+    instance.count = instanceCount
+    return instance
+  }
+  // Property is read-only, so we can’t use assignment
+  Object.defineProperty(
+    // (A)
+    wrapper,
+    Symbol.hasInstance,
+    {
+      value: function (x) {
+        return x instanceof value
+      }
+    }
+  )
+  return wrapper
+}
+
+@countInstances
+class MyClass {}
+
+const inst1 = new MyClass()
+assert.ok(inst1 instanceof MyClass)
+assert.equal(inst1.count, 1)
+
+const inst2 = new MyClass()
+assert.ok(inst2 instanceof MyClass)
+assert.equal(inst2.count, 2)
+```
+
+#### Enabling instanceof via subclassing
+
+我们还可以通过返回值的子类（A 行）来启用 instanceof：
+
+```javascript
+function countInstances(value) {
+  const _this = this
+  let instanceCount = 0
+  // The wrapper must be new-callable
+  return class extends value {
+    // (A)
+    constructor(...args) {
+      super(...args)
+      instanceCount++
+      // Change the instance
+      this.count = instanceCount
+    }
+  }
+}
+
+@countInstances
+class MyClass {}
+
+const inst1 = new MyClass()
+assert.ok(inst1 instanceof MyClass)
+assert.equal(inst1.count, 1)
+
+const inst2 = new MyClass()
+assert.ok(inst2 instanceof MyClass)
+assert.equal(inst2.count, 2)
+```
+
+### freezing instances
+
+装饰器类 @freeze 冻结它修饰的类生成的所有实例：
+
+```javascript
+function freeze(value, { kind }) {
+  if (kind === 'class') {
+    return function (...args) {
+      const inst = new value(...args)
+      return Object.freeze(inst)
+    }
+  }
+}
+
+@freeze
+class Color {
+  constructor(name) {
+    this.name = name
+  }
+}
+
+const red = new Color('red')
+assert.throws(() => (red.name = 'green'), /^TypeError: Cannot assign to read only property 'name'/)
+```
+
+### making classes function-callable
+
+由 @functionCallable 修饰的类可以通过函数调用而不是 new 运算符调用：
+
+```javascript
+function functionCallable(value, { kind }) {
+  if (kind === 'class') {
+    return function (...args) {
+      if (new.target !== undefined) {
+        throw new TypeError('This function can’t be new-invoked')
+      }
+      return new value(...args)
+    }
+  }
+}
+
+@functionCallable
+class Person {
+  constructor(name) {
+    this.name = name
+  }
+}
+const robin = Person('Robin')
+assert.equal(robin.name, 'Robin')
+```
+
+### Class method decorators
+
+方法装饰器的4种能力
+
+- It can change the decorated method by changing value.
+- It can replace the decorated method by returning a function.
+- It can register initializers.
+- context.access only supports getting the value of its property, not setting it.
+
+下面是方法装饰器的几种使用场景
+
+##### tracing method invocations
+
+装饰器 @trace 包装方法，以便将其调用和结果记录到控制台：
+
+```javascript
+function trace(value, { kind, name }) {
+  if (kind === 'method') {
+    return function (...args) {
+      console.log(`CALL ${name}: ${JSON.stringify(args)}`)
+      const result = value.apply(this, args)
+      console.log('=> ' + JSON.stringify(result))
+      return result
+    }
+  }
+}
+
+class StringBuilder {
+  #str = ''
+  @trace
+  add(str) {
+    this.#str += str
+  }
+  @trace
+  toString() {
+    return this.#str
+  }
+}
+
+const sb = new StringBuilder()
+sb.add('Home')
+sb.add('page')
+assert.equal(sb.toString(), 'Homepage')
+
+// Output:
+// CALL add: ["Home"]
+// => undefined
+// CALL add: ["page"]
+// => undefined
+// CALL toString: []
+// => "Homepage"
+```
+
+#### binding methods to instances
+
+库 core-decorators 有一个装饰器 ，可以让我们将函数应用于方法。这使我们能够使用辅助函数，例如 Lodash 的 memoize（）。 以下代码显示了此类装饰器的实现 @applyFunction：
+
+```javascript
+function bind(value, { kind, name, addInitializer }) {
+  if (kind === 'method') {
+    addInitializer(function () {
+      // (B)
+      this[name] = value.bind(this) // (C)
+    })
+  }
+}
+
+class Color2 {
+  #name
+  constructor(name) {
+    this.#name = name
+  }
+  @bind
+  toString() {
+    return `Color(${this.#name})`
+  }
+}
+
+const green2 = new Color2('green')
+const toString2 = green2.toString
+assert.equal(toString2(), 'Color(green)')
+
+// The own property green2.toString is different
+// from Color2.prototype.toString
+assert.ok(Object.hasOwn(green2, 'toString'))
+assert.notEqual(green2.toString, Color2.prototype.toString)
+```
+
+#### applying functions to methods
+
+```javascript
+import { memoize } from 'lodash-es'
+
+function applyFunction(functionFactory) {
+  return (value, { kind }) => {
+    // decorator function
+    if (kind === 'method') {
+      return functionFactory(value)
+    }
+  }
+}
+
+let invocationCount = 0
+
+class Task {
+  @applyFunction(memoize)
+  expensiveOperation(str) {
+    invocationCount++
+    // Expensive processing of `str` 😀
+    return str + str
+  }
+}
+
+const task = new Task()
+assert.equal(task.expensiveOperation('abc'), 'abcabc')
+assert.equal(task.expensiveOperation('abc'), 'abcabc')
+assert.equal(invocationCount, 1)
+```
 
 ## 学习链接
 
