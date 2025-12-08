@@ -373,7 +373,7 @@ el-dialog处理写法不规范的问题 template #footer没有作为el-dialog的
 TypeError: Cannot read properties of undefined (reading 'type') at Object.reset
 ```
 
-修复方案
+修复方案,将echart实例改成shallowRef/shallowReactive
 
 ### 项目中用到了vue-json-pretty
 
