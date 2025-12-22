@@ -786,6 +786,145 @@ assert.equal(task.expensiveOperation('abc'), 'abcabc')
 assert.equal(invocationCount, 1)
 ```
 
+### Class getter decorators, class setter decorators
+
+```typescript
+type ClassGetterDecorator = (
+  value: Function,
+  context: {
+    kind: 'getter'
+    name: string | symbol
+    static: boolean
+    private: boolean
+    access: { get: () => unknown }
+    addInitializer(initializer: () => void): void
+  }
+) => Function | void
+
+type ClassSetterDecorator = (
+  value: Function,
+  context: {
+    kind: 'setter'
+    name: string | symbol
+    static: boolean
+    private: boolean
+    access: { set: (value: unknown) => void }
+    addInitializer(initializer: () => void): void
+  }
+) => Function | void
+```
+
+Getter 装饰器和 setter 装饰器具有与方法装饰器类似的能力。
+
+#### computing values lazily
+
+```typescript
+class C {
+  @lazy
+  get value() {
+    console.log('COMPUTING')
+    return 'Result of computation'
+  }
+}
+
+function lazy(value, { kind, name, addInitializer }) {
+  if (kind === 'getter') {
+    return function () {
+      const result = value.call(this)
+      Object.defineProperty(
+        // (A)
+        this,
+        name,
+        {
+          value: result,
+          writable: false
+        }
+      )
+      return result
+    }
+  }
+}
+
+console.log('1 new C()')
+const inst = new C()
+console.log('2 inst.value')
+assert.equal(inst.value, 'Result of computation')
+console.log('3 inst.value')
+assert.equal(inst.value, 'Result of computation')
+console.log('4 end')
+
+// Output:
+// 1 new C()
+// 2 inst.value
+// COMPUTING
+// 3 inst.value
+// 4 end
+```
+
+通过原型链的原理，第一次访问先访问的是 `Class C`上的 `get value`属性。第二次访问访问的是实例上的 `value`属性，由于第二次访问的属性已经在实例上定义，所以不会再触发`Class C`上的 `get value` 的二次计算。
+
+### Class field decorators
+
+Abilities of a field decorator:
+
+- It cannot change or replace its field. If we need that functionality, we have to use an auto-accessor (what that is, is described later).
+- It can change the value with which “its” field is initialized, by returning a function that receives the original initialization value and returns a new initialization value.
+  - Inside that function, this refers to the current instance.
+- It can register initializers. That is a recent change (post-2022-03) of the decorators API and wasn’t possible before.
+- It can expose access to its field (even if it’s private) via context.access.
+
+#### dependency injection (instance public fields)
+
+```typescript
+const { registry, inject } = createRegistry()
+
+class Logger {
+  log(str) {
+    console.log(str)
+  }
+}
+class Main {
+  @inject logger // 注入logger 类
+  run() {
+    this.logger.log('Hello!')
+  }
+}
+
+registry.register('logger', Logger)
+new Main().run()
+
+// Output:
+// Hello!
+
+function createRegistry() {
+  const nameToClass = new Map()
+  const nameToInstance = new Map()
+  const registry = {
+    register(name, componentClass) {
+      nameToClass.set(name, componentClass)
+    },
+    getInstance(name) {
+      if (nameToInstance.has(name)) {
+        return nameToInstance.get(name)
+      }
+      const componentClass = nameToClass.get(name)
+      if (componentClass === undefined) {
+        throw new Error('Unknown component name: ' + name)
+      }
+      const inst = new componentClass()
+      nameToInstance.set(name, inst)
+      return inst
+    }
+  }
+  function inject(_value, { kind, name }) {
+    if (kind === 'field') {
+      return () => registry.getInstance(name)
+    }
+  }
+  return { registry, inject }
+}
+```
+
 ## 学习链接
 
 [JavaScript metaprogramming with the 2022-03 decorators API](https://2ality.com/2022/10/javascript-decorators.html)
